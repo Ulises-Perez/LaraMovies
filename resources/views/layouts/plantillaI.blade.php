@@ -72,11 +72,11 @@
                       Inicio
                     </a>
                     <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
-                      href="../Peliculas/1">
+                      href="{{route('peliculas.index', $page=1)}}">
                       Películas
                     </a>
                     <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
-                      href="../Tv/1">
+                      href="{{route('series.index', $page=1)}}">
                       Series
                     </a>
                   </div>
@@ -102,13 +102,13 @@
                     </li>
                     <li class="nav-item">
                       <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
-                        href="../Peliculas/1">
+                        href="{{route('peliculas.index', $page=1)}}">
                         Películas
                       </a>
                     </li>
                     <li class="nav-item">
                       <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
-                        href="../Tv/1">
+                        href="{{route('series.index', $page=1)}}">
                         Series
                       </a>
                     </li>
@@ -126,5 +126,12 @@
 
     @yield('content')
 
+    <!-- JS Universal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src='https://cdn.rawgit.com/gijsroge/tilt.js/38991dd7/dest/tilt.jquery.js'></script>
+    <script src="../js/script.js"></script>
+    <!-- JS Universal -->
 </body>
 </html>

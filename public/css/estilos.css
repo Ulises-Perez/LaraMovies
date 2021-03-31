@@ -123,7 +123,6 @@ body{
 }
 
 .poster {
-    width: 197px;
     height: 298px;
     margin-bottom: .5em;
     box-shadow: 0 10px 17px rgba(0, 0, 0, 0.15);
@@ -158,19 +157,32 @@ body{
 /* Contenido CSS */
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 320px) {
+    .poster {
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .poster {
+        height: 220px;
+    }
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 640px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+    .poster {
+        height: 298px;
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    /* Let's get this party started */
-    
+@media only screen and (min-width: 1024px) {
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1280px) {
+}

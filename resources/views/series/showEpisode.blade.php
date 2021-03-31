@@ -12,13 +12,13 @@
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-y-4 md:gap-4">
                         <div class="box-img-content relative col-span-2 lg:col-span-1 flex justify-center lg:justify-start">
                             <img src="https://image.tmdb.org/t/p/w342{{$contentS['poster_path']}}"
-                                class="w-80 md:w-auto rounded" alt="" />
-                                <div class="hidden lg:block absolute top-0 right-0 rounded flex items-center justify-center">
-                                <a href="{{route('series.show', $idserie)}}">
-                                    <button class="bg-red-500 text-white px-3 py-2 rounded-bl rounded-tr outline-none focus:outline-none">
-                                        <i class="fas fa-list-ul"></i>
-                                    </button>
-                                </a>
+                                class="w-auto rounded" alt="" />
+                                <div class="absolute right-0 rounded flex items-center justify-center">
+                                    <a href="{{route('series.show', $idserie)}}">
+                                        <button class="bg-red-500 text-white px-3 py-2 rounded-bl rounded-tr outline-none focus:outline-none">
+                                            <i class="fas fa-list-ul"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="box-info-content col-span-3 lg:col-span-4 text-white">
@@ -29,19 +29,21 @@
                                 <div class="info-year-definicion text-base flex items-center gap-6">
                                 <div class="year hidden lg:block">
                                     <?php
-                                    // Como la fecha viene en formato ingles, establecemos el localismo.
-                                    setlocale(LC_ALL, 'en_US');
+                                        // Como la fecha viene en formato ingles, establecemos el localismo.
+                                        setlocale(LC_ALL, 'en_US');
 
-                                    // Fecha en formato yyyy/mm/dd
-                                    $timestamp = strtotime($contentS['first_air_date']);
+                                        // Fecha en formato yyyy/mm/dd
+                                        $timestamp = strtotime($contentS['first_air_date']);
 
-                                    // Fecha en formato dd/mm/yyyy
-                                    $fechaYear = strftime("%d-%m-%Y", $timestamp);
-                                    echo $fechaYear;
+                                        // Fecha en formato dd/mm/yyyy
+                                        $fechaYear = strftime("%d-%m-%Y", $timestamp);
+                                        echo $fechaYear;
                                     ?>
                                 </div>
-                                <div class="calificacion h-8 w-8 bg-red-500 rounded shadow-md flex justify-center items-center">
-                                    <p class="p-2">{{$contentS['vote_average']}}</p>
+                                <div class="info-year-definicion text-base flex items-center gap-6">
+                                    <div class="calificacion h-8 w-8 bg-red-500 rounded shadow-md flex justify-center items-center">
+                                        <p class="p-2">{{$contentS['vote_average']}}</p>
+                                    </div>
                                 </div>
                                 <!--
                                 <div class="definicion bg-red-500 px-2 rounded-full">
@@ -54,9 +56,9 @@
                                 class="text-base md:text-lg text-justify text-gray-500 my-4 overflow-auto h-20 leading-none">
                                 @php
                                     if(!empty($content_Info_Episode['overview'])){
-                                    echo substr_replace($content_Info_Episode['overview'], "...", 350);
+                                        echo substr_replace($content_Info_Episode['overview'], "...", 350);
                                     }else{
-                                    echo '¡Lo sentimos, no hay ninguna descripción disponible!';
+                                        echo '¡Lo sentimos, no hay ninguna descripción disponible!';
                                     }
                                 @endphp
                             </p>
@@ -123,13 +125,15 @@
                               if(empty($src)){
                                 echo '';
                               }else{
-                                echo '<div class="contentMovie">
-                                          <div class="absolute inset-0 flex flex-col items-center">
-                                            <iframe class="w-full h-full rounded" src="'.$src.'" frameborder="0"
-                                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                              allowfullscreen></iframe>
-                                          </div>
-                                        </div>';
+                                echo '
+                                        <div class="contentMovie">
+                                            <div class="absolute inset-0 flex flex-col items-center">
+                                                <iframe class="w-full h-full rounded-t" src="'.$src.'" frameborder="0" 
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        ';
                               }
                           }
                       ?>
@@ -152,9 +156,27 @@
                                             @if (empty($episodios['still_path']))
                                             @else
                                                 <div class="gap-4">
-                                                    <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-40 h-20" style="background-image: url(https://image.tmdb.org/t/p/w342{{$episodios['still_path']}}); background-size:cover; background-repeat:no-repeat;">
+                                                    <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 h-24 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$episodios['still_path']}}); background-size:cover; background-repeat:no-repeat;">
                                                         <a href="{{route('series.showEpisode', [$idserie, $idseason, $episodios['episode_number']])}}">
-                                                            <h6 class="text-white bg-black bg-opacity-60 rounded py-4 px-4 text-xs h-full flex justify-center items-center">{{$episodios['episode_number']}} - {{$episodios['name']}}</h6>
+                                                            @if ($episodios['name'] == $content_Info_Episode['name'])
+                                                                <h6 class="text-white bg-red-700 bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
+                                                                    <div class="absolute px-4 py-2 inset-0 h-full flex items-center justify-center content-center">
+                                                                        <h6><i class="far fa-eye text-2xl"></i></h6>
+                                                                    </div>
+                                                                    <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
+                                                                        <p>Estas Viendo</p>
+                                                                    </div>
+                                                                </h6>
+                                                            @else
+                                                                <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
+                                                                    <div class="absolute bg-red-500 px-3 py-1 top-0 left-0 rounded-tl rounded-br">
+                                                                        <h6>{{$episodios['episode_number']}}</h6>
+                                                                    </div>
+                                                                    <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
+                                                                        <p class="truncate px-2">{{$episodios['name']}}</p>
+                                                                    </div>
+                                                                </h6>
+                                                            @endif
                                                         </a>
                                                     </button>
                                                 </div>

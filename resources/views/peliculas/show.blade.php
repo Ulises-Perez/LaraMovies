@@ -10,9 +10,9 @@
         <div class="w-full">
           <div class="lg:container mx-auto pt-20 lg:pt-32 pb-6 lg:pb-16 px-2 xl:px-0">
             <div class="grid grid-cols-1 md:grid-cols-5 gap-y-4 md:gap-4">
-              <div class="box-img-content relative col-span-2 lg:col-span-1 flex justify-center lg:justify-start">
+              <div class="box-img-content hidden md:block relative col-span-2 lg:col-span-1 flex justify-center">
                 <img src="https://image.tmdb.org/t/p/w342{{$contentM['poster_path']}}"
-                  class="w-80 md:w-auto rounded" alt="" />
+                  class="w-auto rounded" alt="" />
                   <div class="hidden lg:block absolute top-0 right-0 rounded flex items-center justify-center">
                     <a href="https://www.themoviedb.org/movie/{{$contentM['id']}}" target="_blank">
                       <button class="bg-red-500 text-white px-3 py-2 rounded-bl rounded-tr outline-none focus:outline-none">
@@ -20,6 +20,10 @@
                       </button>
                     </a>
                   </div>
+              </div>
+              <div class="box-img-content-mobile md:hidden relative col-span-2 lg:col-span-1 flex justify-center">
+                <img src="https://image.tmdb.org/t/p/w342{{$contentM['backdrop_path']}}"
+                  class="w-auto rounded" alt="" />
               </div>
               <div class="box-info-content col-span-3 lg:col-span-4 text-white">
                 <div class="info-title flex items-center justify-between">
@@ -125,7 +129,43 @@
                           $result = $Xpath->query($query);//run the Xpath query through the HTML
                           return $result;
                       }
-  
+
+                      function eliminar_tildes($cadena){
+                        //Ahora reemplazamos las letras
+                        $cadena = str_replace(
+                            array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+                            array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+                            $cadena
+                        );
+
+                        $cadena = str_replace(
+                            array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+                            array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+                            array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+                            array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+                            array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('ñ', 'Ñ', 'ç', 'Ç'),
+                            array('n', 'N', 'c', 'C'),
+                            $cadena
+                        );
+
+                        return $cadena;
+                      }
   
                       //new domDocument
                       $dom = new DomDocument("1.0");
@@ -135,18 +175,35 @@
                       }else{
                         $nombreCuevana = $contentM['title'];
                       }
+
+                      $nombreTorrent = $contentM['title'];
+                      $nombreTorrentArreglado = str_replace(" ","-", $nombreTorrent);
+                      $nombreTorrentArregladoNew = str_replace("'", "", $nombreTorrentArreglado);
+                      $nombreTorrentFinal = eliminar_tildes($nombreTorrentArregladoNew);
   
                       $nombreCuevanaArreglado = str_replace(" ","-", $nombreCuevana);
-  
-                      $nombreCuevanaFinal = str_replace("'", "", $nombreCuevanaArreglado);
-  
+                      $nombreCuevanaArregladoNew = str_replace("'", "", $nombreCuevanaArreglado);
+                      $nombreCuevanaFinal = eliminar_tildes($nombreCuevanaArregladoNew);
+
                       $objetivo = "999999";
                       for($i = 100000; $i < 999999; $i++){
                         if($i == $objetivo){
                           echo '';
                         }
                       }
-  
+
+                      //Scrape and parse
+                      //$data1 = scrape('https://seetorrent.org/'.strtolower($nombreTorrentFinal).'/'); //scrape the website
+                      //@$dom->loadHTML($data1); //load the html data to the dom
+                      //$XpathQuery1 = '//dwnld'; //Your Xpath query could look something like this
+                      //$alink = parse($data1, $XpathQuery1, $dom); //parse the HTML with Xpath
+                      //$i=0;
+                      //foreach ($alink as $link) {
+                        //if ($i++ >= 1) break;
+                        //$linkdownload = $link->getAttribute('href');
+                        //echo $linkdownload;
+                      //}
+
                       //Scrape and parse
                       $data = scrape('https://cuevana3.io/'.$i.'/'.strtolower($nombreCuevanaFinal).''); //scrape the website
                       @$dom->loadHTML($data); //load the html data to the dom
@@ -160,13 +217,15 @@
                           $src = $iframe->getAttribute('data-src'); //get the src attribute
   
                           if(!empty($src)){
-                            echo '<div class="contentMovie">
+                            echo '
+                                  <div class="contentMovie">
                                     <div class="absolute inset-0 flex flex-col items-center">
                                       <iframe class="w-full h-full rounded" src="'.$src.'" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                     </div>
-                                  </div>';
+                                  </div>
+                                  ';
                           }else{
                             echo '';
                           }
@@ -175,6 +234,14 @@
           </div>
         </div>
       </section>
+
+      <!-- 
+        <div class="info-year-definicion text-base flex items-center mb-2">
+                                    <a class="calificacion h-8 w-32 bg-red-500 rounded shadow-md flex justify-center items-center" href="https://seetorrent.org/'.strtolower($nombreTorrentFinal).'/" target="_blank">
+                                      Descargar<i class="fas fa-download pl-4"></i>
+                                    </a>
+                                  </div>
+      -->
   
       <section id="section-reparto">
         <div class="w-full">

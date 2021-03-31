@@ -11,7 +11,7 @@
           <div class="grid grid-cols-1 md:grid-cols-5 gap-y-4 md:gap-4">
             <div class="box-img-content relative col-span-2 lg:col-span-1 flex justify-center lg:justify-start">
               <img src="https://image.tmdb.org/t/p/w342<?=$contentS['poster_path']?>"
-                class="w-80 md:w-auto rounded" alt="" />
+                class="w-auto rounded" alt="" />
                 <div class="hidden lg:block absolute top-0 right-0 rounded flex items-center justify-center">
                   <a href="https://www.themoviedb.org/tv/<?=$contentS['id']?>" target="_blank">
                     <button class="bg-red-500 text-white px-3 py-2 rounded-bl rounded-tr outline-none focus:outline-none">
@@ -93,7 +93,7 @@
                                     <div class="gap-4">
                                         <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
                                         <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}">
-                                            <h6 class="text-white bg-black bg-opacity-60 rounded py-4 px-4 text-xs h-full flex justify-center items-center">{{$temporadas['season_number']}} - {{$temporadas['name']}}</h6>
+                                            <h6 class="text-white bg-black bg-opacity-60 rounded py-4 px-4 text-xs h-full flex justify-center items-center">{{$temporadas['name']}}</h6>
                                         </a>
                                         </button>
                                     </div>

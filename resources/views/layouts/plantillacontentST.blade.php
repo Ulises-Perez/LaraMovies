@@ -70,11 +70,11 @@
                         class="hidden bg-back-oficial text-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1"
                         style="min-width: 12rem" id="dropdown-id">
                         <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
-                        href="../Inicio">
+                        href="{{route('welcome')}}">
                         Inicio
                         </a>
                         <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
-                        href="../Peliculas/1">
+                        href="{{route('peliculas.index', $page=1)}}">
                         Películas
                         </a>
                         <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
@@ -104,7 +104,7 @@
                         </li>
                         <li class="nav-item">
                         <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
-                            href="{{route('peliculas.index')}}">
+                            href="{{route('peliculas.index', $page=1)}}">
                             Películas
                         </a>
                         </li>

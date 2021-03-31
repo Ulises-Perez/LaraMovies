@@ -5,14 +5,14 @@
 @section('content')
 <main id="main">
 
-<section id="lista" class="bg-back-oficial">
+<section>
     <div class="w-full">
-        <div class="container mx-auto px-4 xl:px-0 py-10 mb-6 text-white">
-            <div class="container_p flex flex-wrap justify-center xl:justify-start">
+        <div class="container mx-auto flex justify-center content-center px-2 xl:px-0 py-10 mb-6">
+            <div class="px-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 justify-center content-center text-white">
                 <?php
                     foreach ($spContent as $series){
                         if(!empty($series['poster_path'])){
-                        echo   '<a href="'.route('series.show', $series['id']).'" class="item tilt-poster transform hover:scale-105 transition duration-300 ease-in-out">
+                        echo   '<a href="'.route('series.show', $series['id']).'" class="tilt-poster transform hover:scale-105 transition duration-300 ease-in-out">
                                     <div class="poster relative">
                                         <img class="w-full h-full rounded" src="https://image.tmdb.org/t/p/w300/'.$series['poster_path'].'" alt="'.$series['name'].'">
                                         <div class="sombra-content absolute inset-0 flex justify-center items-center rounded">
@@ -24,7 +24,7 @@
                                             <p class="p-2">'.$series['vote_average'].'</p>
                                         </div>
                                     </div>
-                                    <p class="truncate w-full">'.$series['name'].'</p>
+                                    <p class="truncate w-full text-center">'.$series['name'].'</p>
                                 </a>';
                         }
                     }

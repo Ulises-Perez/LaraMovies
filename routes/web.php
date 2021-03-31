@@ -18,7 +18,7 @@ use App\Http\Controllers\SeriesController;
 
 Route::get('/', HomeController::class)->name('welcome');
 
-Route::get('peliculas', [PeliculasController::class, 'index'])->name('peliculas.index');
+Route::get('peliculas/{page}', [PeliculasController::class, 'index'])->name('peliculas.index');
 
 Route::get('contenido/{idpelicula}', [PeliculasController::class, 'show'])->name('peliculas.show');
 

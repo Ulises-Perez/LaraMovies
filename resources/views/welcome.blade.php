@@ -99,7 +99,7 @@
                                     Inicio
                                 </a>
                                 <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
-                                    href="{{route('peliculas.index')}}">
+                                    href="{{route('peliculas.index', $page=1)}}">
                                     Películas
                                 </a>
                                 <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
@@ -131,7 +131,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
-                                        href="{{route('peliculas.index')}}">
+                                        href="{{route('peliculas.index', $page=1)}}">
                                         Películas
                                     </a>
                                 </li>
@@ -211,14 +211,16 @@
             </div>
         </section>
 
-        <section id="listapeliculas" class="bg-back-second">
-            <div class="w-full">
-                <div class="container mx-auto px-4 xl:px-0 py-10 mb-16 text-white">
+        <section>
+            <div class="w-full py-10">
+                <div class="container mx-auto px-4 xl:px-0 text-white">
                     <a href="#" class="text-3xl hover:opacity-75 hover:text-red-500">
                         Populares
                         <hr class="border-gray-600 border-opacity-25 mb-4">
                     </a>
-                    <div class="container_p flex flex-wrap justify-center xl:justify-start">
+                </div>
+                <div class="container mx-auto flex justify-center content-center px-4 xl:px-0 mb-6">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 justify-center content-center text-white">
                         @php
                             $i=0;
                         @endphp
@@ -233,7 +235,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <p class="truncate w-full">{{$npMovies['title']}}</p>
+                                    <p class="truncate w-full text-center">{{$npMovies['title']}}</p>
                                 </a>
                             @endif
                         @endforeach
@@ -242,14 +244,16 @@
             </div>
         </section>
 
-        <section id="listaseries" class="bg-back-oficial">
-            <div class="w-full">
-                <div class="container mx-auto px-4 xl:px-0 py-10 mb-16 text-white">
+        <section>
+            <div class="w-full py-10">
+                <div class="container mx-auto px-4 xl:px-0 text-white">
                     <a href="#" class="text-3xl hover:opacity-75 hover:text-red-500">
                         Series Populares
                         <hr class="border-gray-600 border-opacity-25 mb-4">
                     </a>
-                    <div class="container_p flex flex-wrap justify-center xl:justify-start">
+                </div>
+                <div class="container mx-auto flex justify-center content-center px-4 xl:px-0 mb-6">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 justify-center content-center text-white">
                         @php
                             $i=0;
                         @endphp
@@ -264,7 +268,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <p class="truncate w-full">{{$sEstrenos['name']}}</p>
+                                    <p class="truncate w-full text-center">{{$sEstrenos['name']}}</p>
                                 </a>
                             @endif
                         @endforeach
@@ -285,7 +289,7 @@
                         </div>
                     </div>
                     <div class="col-span-1 lg:col-span-2 list-category">
-                        <h1 class="text-white text-xl mb-4">Pages</h1>
+                        <h1 class="text-white text-xl mb-4">Paginas</h1>
                         <div class="categories">
                             <ul class="text-white text-sm">
                                 <li class="py-1 hover:text-red-500">
