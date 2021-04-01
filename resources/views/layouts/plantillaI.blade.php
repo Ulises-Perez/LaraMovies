@@ -29,11 +29,13 @@
     
     <header>
         <div class="w-full">
-          <div class="mx-auto bg-back-oficial">
-            <div class="flex flex-wrap items-stretch h-16 hidden z-40" id="searchMobile">
-              <input type="search" id="search" placeholder="Buscar Peliculas, Series o Animes"
-                class="px-3 py-3 placeholder-white text-white bg-transparent rounded text-sm shadow outline-none focus:outline-none w-full h-full pr-10" />
-            </div>
+          <div class="mx-auto">
+              <form action="{{route('buscador.search')}}" method="GET">
+                  <div class="flex flex-wrap items-stretch h-16 hidden z-40" id="searchMobile">
+                      <input type="search" id="search" name="search" placeholder="Buscar Peliculas, Series o Animes"
+                          class="px-3 py-3 placeholder-white text-white bg-transparent rounded text-sm shadow outline-none focus:outline-none w-full h-full pr-10" />
+                  </div>
+              </form>
           </div>
         </div>
         <div class="flex flex-wrap relative">
