@@ -85,16 +85,18 @@
                     </div>
                     <div class="lg:flex lg:flex-grow items-center hidden" id="example-collapse-navbar">
                     <ul class="flex flex-col lg:items-center lg:flex-row list-none lg:mr-auto text-white">
-                        <form action="../busqueda.php">
-                        <div class="relative flex flex-wrap items-stretch hidden lg:block ml-6 mr-10" style="width: 400px;">
-                            <input type="search" id="query" name="query" placeholder="Buscar Peliculas, Series o Animes"
-                            class="relative w-full bg-transparent px-3 py-3 pr-10 placeholder-white placeholder-opacity-50 text-white text-sm rounded shadow outline-none focus:outline-none border border-white border-opacity-50" />
-                            <span class="z-10 h-full leading-snug font-normal absolute text-center text-white absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
-                            <a href="#" class="text-center">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            </span>
-                        </div>
+                        <form action="{{route('buscador.search')}}" method="GET">
+                            <div class="relative flex flex-wrap items-stretch hidden lg:block ml-6 mr-10"
+                                style="width: 400px;">
+                                <input type="search" id="query" name="search" placeholder="Buscar Peliculas, Series o Animes"
+                                    class="relative w-full bg-transparent px-3 py-3 pr-10 placeholder-white placeholder-opacity-50 text-white text-sm rounded shadow outline-none focus:outline-none border border-white border-opacity-50" />
+                                <span
+                                    class="z-10 h-full leading-snug font-normal absolute text-center text-white absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
+                                    <a href="#" class="text-center">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                </span>
+                            </div>
                         </form>
                         <li class="nav-item">
                         <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
