@@ -13,9 +13,9 @@
                     <div class="box-img-content relative col-span-2 lg:col-span-1 flex justify-center lg:justify-start">
                         <img src="https://image.tmdb.org/t/p/w342{{$contentS['poster_path']}}"
                         class="w-auto rounded" alt="" />
-                        <div class="hidden lg:block absolute top-0 right-0 rounded flex items-center justify-center">
+                        <div class="hidden lg:block absolute top-0 left-0 m-2 flex items-center justify-center">
                             <a href="{{route('series.show', $idserie)}}">
-                                <button class="bg-red-500 text-white px-3 py-2 rounded-bl rounded-tr outline-none focus:outline-none">
+                                <button class="bg-red-500 text-white px-3 py-2 rounded outline-none focus:outline-none">
                                 <i class="fas fa-list-ul"></i>
                                 </button>
                             </a>
@@ -47,7 +47,7 @@
                                                     <button class="font-bold uppercase shadow-lg rounded leading-normal text-white w-full shadow-inner text-white h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$episodios['still_path']}}); background-size:cover; background-repeat:no-repeat;">
                                                         <a href="{{route('series.showEpisode', [$idserie, $idseason, $episodios['episode_number']])}}">
                                                             <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
-                                                                <div class="absolute bg-red-500 px-3 py-1 top-0 left-0 rounded-tl rounded-br">
+                                                                <div class="absolute bg-red-500 px-4 py-1 top-0 left-0 m-2 rounded-full">
                                                                     <h6>{{$episodios['episode_number']}}</h6>
                                                                 </div>
                                                                 <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">

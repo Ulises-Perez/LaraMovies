@@ -175,3 +175,10 @@ $('.tilt-posters').tilt({
   scale: 1.04,
   perspective: 1000
 })
+
+$(document).ready(function(){
+  $("#toogleA").on( "click", function() {	 
+    $('#lista-peliculas').toggle();
+    $('#lista-series').toggle();
+     });
+});

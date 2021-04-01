@@ -13,9 +13,9 @@
               <div class="box-img-content hidden md:block relative col-span-2 lg:col-span-1 flex justify-center">
                 <img src="https://image.tmdb.org/t/p/w342{{$contentM['poster_path']}}"
                   class="w-auto rounded" alt="" />
-                  <div class="hidden lg:block absolute top-0 right-0 rounded flex items-center justify-center">
+                  <div class="hidden lg:block absolute top-0 left-0 m-2 flex items-center justify-center">
                     <a href="https://www.themoviedb.org/movie/{{$contentM['id']}}" target="_blank">
-                      <button class="bg-red-500 text-white px-3 py-2 rounded-bl rounded-tr outline-none focus:outline-none">
+                      <button class="bg-red-500 text-white px-3 py-2 rounded outline-none focus:outline-none">
                         <i class="fas fa-external-link-alt"></i>
                       </button>
                     </a>

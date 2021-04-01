@@ -20,7 +20,7 @@
                                                 <i class="fas fa-play"></i>
                                             </button>
                                         </div>
-                                        <div class="calificacion absolute top-0 left-0 h-8 w-8 bg-red-500 rounded-tl rounded-br shadow-md flex justify-center items-center">
+                                        <div class="calificacion absolute top-0 left-0 h-8 w-8 m-2 bg-red-500 rounded shadow-md flex justify-center items-center">
                                             <p class="p-2">'.$series['vote_average'].'</p>
                                         </div>
                                     </div>
