@@ -9,7 +9,7 @@ class SeriesController extends Controller
 {
     public function index($page){
 
-        $TMDB_KEY = env('TMDB_KEY');
+        $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
 
         $spContent = Http::get('https://api.themoviedb.org/3/tv/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page.'')
             ->json()['results'];
@@ -19,7 +19,7 @@ class SeriesController extends Controller
 
     public function show($idserie){
 
-        $TMDB_KEY = env('TMDB_KEY');
+        $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
 
         $contentS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES')
             ->json();
@@ -35,7 +35,7 @@ class SeriesController extends Controller
 
     public function showSeason($idserie, $idseason){
 
-        $TMDB_KEY = env('TMDB_KEY');
+        $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
 
         $contentS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES')
             ->json();
@@ -48,7 +48,7 @@ class SeriesController extends Controller
 
     public function showEpisode($idserie, $idseason, $idepisode){
 
-        $TMDB_KEY = env('TMDB_KEY');
+        $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
 
         $contentS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES')
             ->json();
