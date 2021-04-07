@@ -91,10 +91,17 @@
                         <div class="block" id="{{$temporadas['season_number']}}">
                             <div class="flex gap-2">
                                     <div class="gap-4">
-                                        <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
-                                        <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}">
-                                            <h6 class="text-white bg-black bg-opacity-60 rounded py-4 px-4 text-xs h-full flex justify-center items-center">{{$temporadas['name']}}</h6>
-                                        </a>
+                                        <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
+                                          <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}">
+                                            <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
+                                              <div class="absolute bg-red-500 px-4 py-1 top-0 left-0 mt-2 rounded-r-full">
+                                                  <h6>{{$temporadas['season_number']}}</h6>
+                                              </div>
+                                              <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
+                                                  <p class="truncate px-2">{{$temporadas['name']}}</p>
+                                              </div>
+                                            </h6>
+                                          </a>
                                         </button>
                                     </div>
                             </div>

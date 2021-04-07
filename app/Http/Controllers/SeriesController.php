@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class SeriesController extends Controller
 {
     public function index($page){
 
         $TMDB_KEY = env('TMDB_KEY');
-    
-        //Api for Series Page
-        $spContent = file_get_contents('https://api.themoviedb.org/3/tv/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page);
-        $spContent = json_decode($spContent, true)['results'];
+
+        $spContent = Http::get('https://api.themoviedb.org/3/tv/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page.'')
+            ->json()['results'];
 
         return view('series.index', compact('page', 'spContent'));
     }
@@ -21,15 +21,14 @@ class SeriesController extends Controller
 
         $TMDB_KEY = env('TMDB_KEY');
 
-        //api for Content of Series or Tv
-        $contentS = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES');
-        $contentS = json_decode($contentS, true);
+        $contentS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
 
-        $contentCastS = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'/credits?api_key='.$TMDB_KEY.'&language=es-ES');
-        $contentCastS = json_decode($contentCastS, true);
+        $contentCastS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'/credits?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
 
-        $contentImgS = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'/images?api_key='.$TMDB_KEY.'');
-        $contentImgS = json_decode($contentImgS, true);
+        $contentImgS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'/images?api_key='.$TMDB_KEY.'')
+            ->json();
 
         return view('series.show', compact('idserie', 'contentS', 'contentCastS', 'contentImgS'));
     }
@@ -38,12 +37,12 @@ class SeriesController extends Controller
 
         $TMDB_KEY = env('TMDB_KEY');
 
-        //api for Content of Series or Tv
-        $contentS = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES');
-        $contentS = json_decode($contentS, true);
+        $contentS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
 
-        $contentEpisodesS = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'?api_key='.$TMDB_KEY.'&language=es-ES');
-        $contentEpisodesS = json_decode($contentEpisodesS, true);
+        $contentEpisodesS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
+        
         return view('series.showSeason', compact('idserie', 'idseason', 'contentS', 'contentEpisodesS'));
     }
 
@@ -51,15 +50,14 @@ class SeriesController extends Controller
 
         $TMDB_KEY = env('TMDB_KEY');
 
-        //api for Content of Series or Tv
-        $contentS = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES');
-        $contentS = json_decode($contentS, true);
+        $contentS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
 
-        $contentEpisodesS = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'?api_key='.$TMDB_KEY.'&language=es-ES');
-        $contentEpisodesS = json_decode($contentEpisodesS, true);
-
-        $content_Info_Episode = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'/episode/'.$idepisode.'?api_key='.$TMDB_KEY.'&language=es-ES');
-        $content_Info_Episode = json_decode($content_Info_Episode ,true);
+        $contentEpisodesS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
+        
+        $content_Info_Episode = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'/episode/'.$idepisode.'?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
 
         return view('series.showEpisode', compact('idserie', 'idseason', 'idepisode', 'contentS', 'contentEpisodesS', 'content_Info_Episode'));
     }

@@ -6,6 +6,103 @@
 
     <main id="main" class="backdrop-blur">
 
+      <?php //Iframe && Scrapper Movies in Cuevana.co
+                      function scrape($URL){
+                        //cURL options
+                        $options = Array(
+                                    CURLOPT_RETURNTRANSFER => TRUE, //return html data in string instead of printing it out on screen
+                                    CURLOPT_FOLLOWLOCATION => TRUE, //follow header('Location: location');
+                                    CURLOPT_CONNECTTIMEOUT => 60, //max time to try to connect to page
+                                    CURLOPT_HEADER => FALSE, //include header
+                                    CURLOPT_USERAGENT => "Mozilla/5.0 (X11; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0", //User Agent
+                                    CURLOPT_URL => $URL //SET THE URL
+                                    );
+  
+                        $ch = curl_init($URL);//initialize a cURL session
+                        curl_setopt_array($ch, $options);//set the cURL options
+                        $data = curl_exec($ch);//execute cURL (the scraping)
+                        curl_close($ch);//close the cURL session
+  
+                        return $data;
+                      }
+  
+                      function parse(&$data, $query, &$dom){
+                          $Xpath = new DOMXpath($dom); //new Xpath object associated to the domDocument
+                          $result = $Xpath->query($query);//run the Xpath query through the HTML
+                          return $result;
+                      }
+
+                      function eliminar_tildes($cadena){
+                        //Ahora reemplazamos las letras
+                        $cadena = str_replace(
+                            array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+                            array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+                            $cadena
+                        );
+
+                        $cadena = str_replace(
+                            array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+                            array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+                            array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+                            array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+                            array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+                            $cadena );
+
+                        $cadena = str_replace(
+                            array('ñ', 'Ñ', 'ç', 'Ç'),
+                            array('n', 'N', 'c', 'C'),
+                            $cadena
+                        );
+
+                        return $cadena;
+                      }
+  
+                      //new domDocument
+                      $dom = new DomDocument("1.0");
+  
+                      if($nombreCuevana = $contentM['original_title']){
+                        $nombreCuevana = $contentM['original_title'];
+                      }else{
+                        $nombreCuevana = $contentM['title'];
+                      }
+  
+                      $nombreCuevanaArreglado = str_replace(" ","-", $nombreCuevana);
+                      $nombreCuevanaArregladoNew = str_replace("'", "", $nombreCuevanaArreglado);
+                      $nombreCuevanaFinal = eliminar_tildes($nombreCuevanaArregladoNew);
+
+                      $objetivo = "999999";
+                      for($i = 100000; $i < 999999; $i++){
+                        if($i == $objetivo){
+                          echo '';
+                        }
+                      }
+
+                      //Scrape and parse
+                      $data = scrape('https://cuevana3.io/'.$i.'/'.strtolower($nombreCuevanaFinal).''); //scrape the website
+                      @$dom->loadHTML($data); //load the html data to the dom
+  
+                      $XpathQuery = '//iframe'; //Your Xpath query could look something like this
+                      $iframes = parse($data, $XpathQuery, $dom); //parse the HTML with Xpath
+  
+                      $i=0;
+                      foreach($iframes as $iframe){
+                          if($i++ >= 1) break;
+                          $src = $iframe->getAttribute('data-src'); //get the src attribute
+                      }
+                  ?>
+
       <section id="content-back">
         <div class="w-full">
           <div class="lg:container mx-auto pt-20 lg:pt-32 pb-6 lg:pb-16 px-2 xl:px-0">
@@ -14,7 +111,7 @@
                 <img src="https://image.tmdb.org/t/p/w342{{$contentM['poster_path']}}"
                   class="w-auto rounded" alt="" />
                   <div class="hidden lg:block absolute top-0 left-0 m-2 flex items-center justify-center">
-                    <a href="https://www.themoviedb.org/movie/{{$contentM['id']}}" target="_blank">
+                    <a href="{{$src}}" target="_blank">
                       <button class="bg-red-500 text-white px-3 py-2 rounded outline-none focus:outline-none">
                         <i class="fas fa-external-link-alt"></i>
                       </button>
@@ -101,139 +198,7 @@
         </div>
       </section>
   
-      <section id="video-content">
-        <div class="w-full">
-          <div class="lg:container mx-auto mb-6 px-2 xl:px-0 text-white">
-                  <?php //Iframe && Scrapper Movies in Cuevana.co
-                    function scrape($URL){
-                        //cURL options
-                        $options = Array(
-                                    CURLOPT_RETURNTRANSFER => TRUE, //return html data in string instead of printing it out on screen
-                                    CURLOPT_FOLLOWLOCATION => TRUE, //follow header('Location: location');
-                                    CURLOPT_CONNECTTIMEOUT => 60, //max time to try to connect to page
-                                    CURLOPT_HEADER => FALSE, //include header
-                                    CURLOPT_USERAGENT => "Mozilla/5.0 (X11; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0", //User Agent
-                                    CURLOPT_URL => $URL //SET THE URL
-                                    );
-  
-                        $ch = curl_init($URL);//initialize a cURL session
-                        curl_setopt_array($ch, $options);//set the cURL options
-                        $data = curl_exec($ch);//execute cURL (the scraping)
-                        curl_close($ch);//close the cURL session
-  
-                        return $data;
-                      }
-  
-                      function parse(&$data, $query, &$dom){
-                          $Xpath = new DOMXpath($dom); //new Xpath object associated to the domDocument
-                          $result = $Xpath->query($query);//run the Xpath query through the HTML
-                          return $result;
-                      }
-
-                      function eliminar_tildes($cadena){
-                        //Ahora reemplazamos las letras
-                        $cadena = str_replace(
-                            array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-                            array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-                            $cadena
-                        );
-
-                        $cadena = str_replace(
-                            array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-                            array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-                            $cadena );
-
-                        $cadena = str_replace(
-                            array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-                            array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-                            $cadena );
-
-                        $cadena = str_replace(
-                            array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-                            array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-                            $cadena );
-
-                        $cadena = str_replace(
-                            array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-                            array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-                            $cadena );
-
-                        $cadena = str_replace(
-                            array('ñ', 'Ñ', 'ç', 'Ç'),
-                            array('n', 'N', 'c', 'C'),
-                            $cadena
-                        );
-
-                        return $cadena;
-                      }
-  
-                      //new domDocument
-                      $dom = new DomDocument("1.0");
-  
-                      if($nombreCuevana = $contentM['original_title']){
-                        $nombreCuevana = $contentM['original_title'];
-                      }else{
-                        $nombreCuevana = $contentM['title'];
-                      }
-
-                      $nombreTorrent = $contentM['title'];
-                      $nombreTorrentArreglado = str_replace(" ","-", $nombreTorrent);
-                      $nombreTorrentArregladoNew = str_replace("'", "", $nombreTorrentArreglado);
-                      $nombreTorrentFinal = eliminar_tildes($nombreTorrentArregladoNew);
-  
-                      $nombreCuevanaArreglado = str_replace(" ","-", $nombreCuevana);
-                      $nombreCuevanaArregladoNew = str_replace("'", "", $nombreCuevanaArreglado);
-                      $nombreCuevanaFinal = eliminar_tildes($nombreCuevanaArregladoNew);
-
-                      $objetivo = "999999";
-                      for($i = 100000; $i < 999999; $i++){
-                        if($i == $objetivo){
-                          echo '';
-                        }
-                      }
-
-                      //Scrape and parse
-                      //$data1 = scrape('https://seetorrent.org/'.strtolower($nombreTorrentFinal).'/'); //scrape the website
-                      //@$dom->loadHTML($data1); //load the html data to the dom
-                      //$XpathQuery1 = '//dwnld'; //Your Xpath query could look something like this
-                      //$alink = parse($data1, $XpathQuery1, $dom); //parse the HTML with Xpath
-                      //$i=0;
-                      //foreach ($alink as $link) {
-                        //if ($i++ >= 1) break;
-                        //$linkdownload = $link->getAttribute('href');
-                        //echo $linkdownload;
-                      //}
-
-                      //Scrape and parse
-                      $data = scrape('https://cuevana3.io/'.$i.'/'.strtolower($nombreCuevanaFinal).''); //scrape the website
-                      @$dom->loadHTML($data); //load the html data to the dom
-  
-                      $XpathQuery = '//iframe'; //Your Xpath query could look something like this
-                      $iframes = parse($data, $XpathQuery, $dom); //parse the HTML with Xpath
-  
-                      $i=0;
-                      foreach($iframes as $iframe){
-                          if($i++ >= 1) break;
-                          $src = $iframe->getAttribute('data-src'); //get the src attribute
-  
-                          if(!empty($src)){
-                            echo '
-                                  <div class="contentMovie">
-                                    <div class="absolute inset-0 flex flex-col items-center">
-                                      <iframe class="w-full h-full rounded" src="'.$src.'" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                    </div>
-                                  </div>
-                                  ';
-                          }else{
-                            echo '';
-                          }
-                      }
-                  ?>
-          </div>
-        </div>
-      </section>
+      
 
       <!-- 
         <div class="info-year-definicion text-base flex items-center mb-2">

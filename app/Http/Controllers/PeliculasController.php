@@ -8,7 +8,7 @@ class PeliculasController extends Controller
 {
     public function index($page){
 
-        $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
+        $TMDB_KEY = env('TMDB_KEY');
 
         //Api for Peliculas Page
         $mpContent = file_get_contents('https://api.themoviedb.org/3/movie/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page);
@@ -19,7 +19,7 @@ class PeliculasController extends Controller
 
     public function show($idpelicula){
 
-        $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
+        $TMDB_KEY = env('TMDB_KEY');
 
         //Api for Content of Movies
         $contentM = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'?api_key='.$TMDB_KEY.'&language=es-ES');

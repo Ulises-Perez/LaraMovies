@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\BuscadorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -32,3 +33,7 @@ Route::get('series/{idserie}', [SeriesController::class, 'show'])->name('series.
 Route::get('series/{idserie}/{season_number}', [SeriesController::class, 'showSeason'])->name('series.showSeason');
 
 Route::get('series/{idserie}/{idseason}/{idepisode}', [SeriesController::class, 'showEpisode'])->name('series.showEpisode');
+
+Route::get('animes/', [AnimeController::class, 'index'])->name('anime.index');
+
+Route::get('anime/{idanime}', [AnimeController::class, 'show'])->name('anime.show');
