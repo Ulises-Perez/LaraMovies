@@ -20,6 +20,10 @@ use App\Http\Controllers\SeriesController;
 
 Route::get('/', HomeController::class)->name('welcome');
 
+Route::get('/offline', function () {
+    return view('vendor/laravelpwa/offline');
+});
+
 Route::get('buscador/', [BuscadorController::class, 'search'])->name('buscador.search');
 
 Route::get('peliculas/{page}', [PeliculasController::class, 'index'])->name('peliculas.index');
