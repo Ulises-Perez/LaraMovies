@@ -13,13 +13,6 @@
               <div class="box-img-content hidden md:block relative col-span-2 lg:col-span-1 flex justify-center">
                 <img src="https://image.tmdb.org/t/p/w342{{$contentM['poster_path']}}"
                   class="w-auto rounded" alt="" />
-                  <div class="hidden lg:block absolute top-0 left-0 m-2 flex items-center justify-center">
-                    <a href="{{$src}}" target="_blank">
-                      <button class="bg-red-500 text-white px-3 py-2 rounded outline-none focus:outline-none">
-                        <i class="fas fa-external-link-alt"></i>
-                      </button>
-                    </a>
-                  </div>
               </div>
               <div class="box-img-content-mobile md:hidden relative col-span-2 lg:col-span-1 flex justify-center">
                 <img src="https://image.tmdb.org/t/p/w342{{$contentM['backdrop_path']}}"
