@@ -134,6 +134,10 @@
                                     href="{{route('series.index', $page=1)}}">
                                     Series
                                 </a>
+                                <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
+                                    href="{{route('listas.index')}}">
+                                    Listas
+                                </a>
                             </div>
                         </div>
                         <div class="lg:flex lg:flex-grow items-center hidden" id="example-collapse-navbar">
@@ -167,6 +171,12 @@
                                     <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
                                         href="{{route('series.index', $page=1)}}">
                                         Series
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
+                                        href="{{route('listas.index')}}">
+                                        Listas
                                     </a>
                                 </li>
                             </ul>

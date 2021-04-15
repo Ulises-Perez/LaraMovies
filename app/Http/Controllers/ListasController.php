@@ -13,8 +13,11 @@ class ListasController extends Controller
         //Api for Peliculas Page
         $listaTheAvengers = file_get_contents('https://api.themoviedb.org/3/list/7092572?api_key='.$TMDB_KEY.'&language=es-ES');
         $listaTheAvengers = json_decode($listaTheAvengers, true);
+
+        $listaCars = file_get_contents('https://api.themoviedb.org/3/list/7092581?api_key='.$TMDB_KEY.'&language=es-ES');
+        $listaCars = json_decode($listaCars, true);
         //dd($listaTheAvengers);
 
-        return view('listas.index', compact('listaTheAvengers'));
+        return view('listas.index', compact('listaTheAvengers','listaCars'));
     }
 }
