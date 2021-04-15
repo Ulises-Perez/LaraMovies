@@ -218,6 +218,18 @@
                       </div>
                       <div class="hidden" id="tab-reparto">
                         <div class="owl-carousel owl-theme owl-carousel-2">
+                          <div class="item">
+                            <div class="max-w-xs rounded overflow-hidden shadow-lg relative">
+                              <img class="w-full h-56"
+                                src="../img/actor.jpeg"
+                                alt="Sunset in the mountains" />
+                              <div class="px-6 py-1 w-full absolute bottom-0 backdrop-blur">
+                                <div class="font-bold text-md md:text-lg truncate">
+                                Israel Araya
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           @php
                               $i=0;
                           @endphp
