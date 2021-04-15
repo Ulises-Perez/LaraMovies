@@ -169,7 +169,7 @@
                                                                 </h6>
                                                             @else
                                                                 <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
-                                                                    <<div class="absolute bg-red-500 px-4 py-1 top-0 left-0 m-2 rounded-full">
+                                                                    <div class="absolute bg-red-500 px-4 py-1 top-0 left-0 m-2 rounded-full">
                                                                         <h6>{{$episodios['episode_number']}}</h6>
                                                                     </div>
                                                                     <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
