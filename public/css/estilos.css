@@ -38,6 +38,12 @@ body{
 .bg-back-second{
     background-color: rgba(97, 96, 96, 0.2);
 }
+
+.backdrop-blur{
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
 /* CSS Universal */
 
 
