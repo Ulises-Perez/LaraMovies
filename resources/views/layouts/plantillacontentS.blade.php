@@ -43,7 +43,7 @@
                         <h1 class="text-white text-xl mb-4">About</h1>
                         <div class="info">
                         <p class="text-white text-sm">
-                            Desarrollador Experto Critico en Diseño Israel Araya - EasterEgg
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, vitae. Hic voluptates necessitatibus optio voluptatibus, incidunt consectetur omnis blanditiis doloremque repellendus quia nam et magni architecto soluta molestiae! Dolores, autem?
                         </p>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ return [
         'name' => env('APP_NAME', 'LaraMovies'),
         'short_name' => 'Lara',
         'start_url' => '/',
-        'background_color' => '#1d1d1d',
+        'background_color' => '#1D1D1D',
         'theme_color' => '#ED4444',
         'display' => 'standalone',
         'orientation'=> 'any',
