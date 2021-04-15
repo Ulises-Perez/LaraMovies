@@ -4,6 +4,7 @@ use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\BuscadorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListasController;
 use App\Http\Controllers\PeliculasController;
 use App\Http\Controllers\SeriesController;
 
@@ -37,6 +38,8 @@ Route::get('series/{idserie}', [SeriesController::class, 'show'])->name('series.
 Route::get('series/{idserie}/{season_number}', [SeriesController::class, 'showSeason'])->name('series.showSeason');
 
 Route::get('series/{idserie}/{idseason}/{idepisode}', [SeriesController::class, 'showEpisode'])->name('series.showEpisode');
+
+Route::get('listas/', [ListasController::class, 'index'])->name('listas.index');
 
 Route::get('animes/', [AnimeController::class, 'index'])->name('anime.index');
 

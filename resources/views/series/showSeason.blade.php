@@ -68,8 +68,8 @@
         <section id="temporadas-content">
             <div class="w-full">
                 <div class="lg:container mx-auto px-2 xl:px-0 text-white">
-                <h1 class="text-xl">Temporadas</h1>
-                <div class="temporadas pt-2 pb-8 h-auto w-full overflow-auto flex gap-2">
+                    <h1 class="text-xl">Temporadas</h1>
+                    <div class="temporadas pt-2 pb-8 h-auto w-full overflow-auto flex gap-2">
                             @foreach ($contentS['seasons'] as $temporadas)
                                 <div class="block" id="{{$temporadas['season_number']}}">
                                     <div class="flex gap-2">

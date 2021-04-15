@@ -9,11 +9,14 @@ class AnimeController extends Controller
 {
     public function index(){
 
-        $animeAll = Http::get('https://aruppi-api.herokuapp.com/api/v3/allAnimes')
-            ->json();
+        $animeAll = Http::get('https://aruppi-api.herokuapp.com/api/v3/AllAnimes');
+
+        if($animeAll->failed()){
+            dd($animeAll->body());
+        }
 
         $animeImg = file_get_contents('https://aruppi-api.herokuapp.com/api/v3/images/query');
-        //print_r($animeAll);
+        dd($animeAll);
 
         return view('anime.index', ['animeAll'=>$animeAll]);
     }
