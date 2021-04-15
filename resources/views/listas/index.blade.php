@@ -22,7 +22,7 @@
                                         @foreach ($listaTheAvengers['items'] as $movies)
                                             <div class="flex gap-2">
                                                 <div class="gap-4">
-                                                    <div class="w-40 lg:w-48 lg:w-60 h-80 relative">
+                                                    <div class="w-40 lg:w-48 lg:w-60 h-80 relative lol-sas">
                                                         <x-movie-card :movies="$movies"/>
                                                     </div>
                                                 </div>
