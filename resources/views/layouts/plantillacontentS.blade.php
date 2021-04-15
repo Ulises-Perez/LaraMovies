@@ -43,10 +43,7 @@
                         <h1 class="text-white text-xl mb-4">About</h1>
                         <div class="info">
                         <p class="text-white text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Delectus ullam minus nulla officia voluptates, expedita ab,
-                            eos atque suscipit facere adipisci a laboriosam odio quos ut
-                            beatae omnis vero eveniet?
+                            Desarrollador Experto Critico en Diseño Israel Araya - EasterEgg
                         </p>
                         </div>
                     </div>
