@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="flex flex-wrap relative">
-          <div class="w-full z-10">
+          <div class="menu w-full fixed z-10">
             <nav class="relative flex flex-wrap items-center justify-between px-2 navbar-expand-lg">
               <div class="container mx-auto flex flex-wrap items-center justify-between">
                 <div
@@ -85,7 +85,7 @@
                     </a>
                     <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
                       href="{{route('listas.index')}}">
-                      Listas
+                      Sagas
                     </a>
                     <!--<a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
                       href="{route('anime.index')}}">
@@ -99,7 +99,7 @@
                       <div class="relative flex flex-wrap items-stretch hidden lg:block ml-6 mr-10"
                           style="width: 400px;">
                           <input type="search" id="query" name="search" placeholder="Buscar Peliculas, Series o Animes"
-                              class="relative w-full bg-transparent px-3 py-3 pr-10 placeholder-white placeholder-opacity-50 text-white text-sm rounded shadow outline-none focus:outline-none border border-white border-opacity-50" />
+                              class="relative w-full bg-transparent px-3 py-3 pr-10 placeholder-white placeholder-opacity-50 text-white text-sm rounded shadow outline-none focus:outline-none focus:bg-white focus:text-gray-900 focus:placeholder-gray-900 border border-white border-opacity-50" />
                           <span
                               class="z-10 h-full leading-snug font-normal absolute text-center text-white absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
                               <a href="#" class="text-center">
@@ -129,7 +129,7 @@
                     <li class="nav-item">
                       <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
                         href="{{route('listas.index')}}">
-                        Listas
+                        Sagas
                       </a>
                     </li>
                     <!--<li class="nav-item">

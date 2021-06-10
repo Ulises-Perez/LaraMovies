@@ -18,8 +18,7 @@
 
     <!-- Owl Carrousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
 
     <link rel="icon" href="https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png" type="image/png" />
     <!-- Estilos Propios -->
@@ -41,7 +40,7 @@
             </div>
         </div>
         <div class="flex flex-wrap relative">
-            <div class="w-full absolute z-10">
+            <div class="menu w-full fixed z-10">
                 <nav class="relative flex flex-wrap items-center justify-between px-2 navbar-expand-lg">
                     <div class="container mx-auto flex flex-wrap items-center justify-between">
                         <div
@@ -136,7 +135,7 @@
                                 </a>
                                 <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
                                     href="{{route('listas.index')}}">
-                                    Listas
+                                    Sagas
                                 </a>
                             </div>
                         </div>
@@ -176,7 +175,7 @@
                                 <li class="nav-item">
                                     <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
                                         href="{{route('listas.index')}}">
-                                        Listas
+                                        Sagas
                                     </a>
                                 </li>
                             </ul>

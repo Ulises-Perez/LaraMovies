@@ -28,8 +28,15 @@ class PeliculasController extends Controller
         $contentCast = json_decode($contentCast, true);
         $contentImg = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'/images?api_key='.$TMDB_KEY.'');
         $contentImg = json_decode($contentImg, true);
-        //print_r($contentM);
+        $contentTrailer = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'/videos?api_key='.$TMDB_KEY.'');
+        $contentTrailer = json_decode($contentTrailer, true);
+        //dd($contentTrailer);
 
-        return view('peliculas.show', compact('idpelicula', 'contentM', 'contentCast', 'contentImg'));
+        //dd($link);
+        //dd($data);
+
+        //dd($data['enlaces']);
+
+        return view('peliculas.show', compact('idpelicula', 'contentM', 'contentCast', 'contentImg', 'contentTrailer'));
     }
 }

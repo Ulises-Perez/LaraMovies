@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <main id="main">
+    <main id="main" class="mt-20">
 
     <section id="toggle-busquedas">
         <div class="w-full">

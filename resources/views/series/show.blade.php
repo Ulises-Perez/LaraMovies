@@ -49,8 +49,7 @@
                   -->
                 </div>
               </div>
-              <p
-                class="text-base md:text-lg text-justify text-gray-500 my-4 overflow-auto h-20 leading-none">
+              <p class="descs text-base md:text-lg text-justify text-gray-500 my-4 overflow-auto h-20 leading-none">
                   <?php
                     if(!empty($contentS['overview'])){
                       echo substr_replace($contentS['overview'], "...", 350);
@@ -68,7 +67,7 @@
                               <div class="col-span-2 genero h-12 relative flex justify-start px-4 items-center rounded" style="
                                     background-image: url(https://image.tmdb.org/t/p/w185/'.$contentS['backdrop_path'].');
                                   ">
-                                <div class="nombre-genero absolute inset-0 bg-gradient-to-r from-red-600 px-4 rounded"></div>
+                                <div class="nombre-genero absolute inset-0 bg-gradient-to-r from-red-600 px-6 rounded"></div>
                                 <h6 class="opacity-100 absolute">'.$generos['name'].'</h6>
                               </div>
                             </a>';
@@ -86,23 +85,25 @@
         <div class="w-full">
             <div class="lg:container mx-auto px-2 xl:px-0 text-white">
                 <h1 class="text-xl">Temporadas</h1>
-                <div class="temporadas pt-2 pb-8 h-auto w-full overflow-auto flex gap-2">
+                <div class="temporadas descs pt-2 pb-8 h-auto w-full overflow-auto flex gap-2">
                     @foreach ($contentS['seasons'] as $temporadas)
                         <div class="block" id="{{$temporadas['season_number']}}">
                             <div class="flex gap-2">
                                     <div class="gap-4">
-                                        <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
-                                          <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}">
-                                            <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
-                                              <div class="absolute bg-red-500 px-4 py-1 top-0 left-0 mt-2 rounded-r-full">
-                                                  <h6>{{$temporadas['season_number']}}</h6>
-                                              </div>
-                                              <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
-                                                  <p class="truncate px-2">{{$temporadas['name']}}</p>
-                                              </div>
-                                            </h6>
-                                          </a>
-                                        </button>
+                                        @if (!empty($temporadas['poster_path']))
+                                          <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
+                                            <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}">
+                                              <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
+                                                <div class="absolute bg-red-500 px-4 py-1 top-0 left-0 mt-2 rounded-r-full">
+                                                    <h6>{{$temporadas['season_number']}}</h6>
+                                                </div>
+                                                <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
+                                                    <p class="truncate px-2">{{$temporadas['name']}}</p>
+                                                </div>
+                                              </h6>
+                                            </a>
+                                          </button>
+                                        @endif
                                     </div>
                             </div>
                         </div>

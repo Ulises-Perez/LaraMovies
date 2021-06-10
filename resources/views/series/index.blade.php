@@ -3,7 +3,7 @@
 @section('title', 'TMDB - Series')
 
 @section('content')
-<main id="main">
+<main id="main" class="mt-20">
 
 <section>
     <div class="w-full">

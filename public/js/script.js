@@ -7,7 +7,27 @@ function toggleTheme() {
 */
 /* JS UNIVERSAL */
 
+$(function() {
+
+  $('#sel-video').on('change', function() {
+    var srcVideo = $(this).val();
+      $('#demo-player').attr('src', srcVideo);
+  });
+
+});
+
+
 /* JS NAVBAR */
+var num = 1; //number of pixels before modifying styles
+
+$(window).bind('scroll', function () {
+    if ($(window).scrollTop() > num) {
+        $('.menu').addClass('navbar-blur');
+    } else {
+        $('.menu').removeClass('navbar-blur');
+    }
+});
+
 function toggleNavbar(collapseID) {
   document.getElementById(collapseID).classList.toggle("hidden");
   document.getElementById(collapseID).classList.toggle("flex");
@@ -142,6 +162,27 @@ $(".owl-carousel-3").owlCarousel({
     },
     1000: {
       items: 4,
+    },
+  },
+});
+
+$(".owl-carousel-options").owlCarousel({
+  loop:false,
+  margin: 10,
+  lazyLoad:true,
+  animateOut: "fadeOut",
+  autoplay: true,
+  autoplayTimeout: 5000,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1,
+    },
+    600: {
+      items: 1,
+    },
+    1000: {
+      items: 1,
     },
   },
 });

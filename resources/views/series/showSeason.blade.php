@@ -27,7 +27,7 @@
                                 Temporada - {{$idseason}}
                             </h1>
                         </div>
-                        <div class="episodios lg:px-2 my-2 lg:my-4 h-72 overflow-auto">
+                        <div class="episodios descs lg:px-2 my-2 lg:my-4 h-72 overflow-auto">
                             @php
                                 $i=0;
                             @endphp
@@ -69,13 +69,14 @@
             <div class="w-full">
                 <div class="lg:container mx-auto px-2 xl:px-0 text-white">
                     <h1 class="text-xl">Temporadas</h1>
-                    <div class="temporadas pt-2 pb-8 h-auto w-full overflow-auto flex gap-2">
+                    <div class="temporadas descs pt-2 pb-8 h-auto w-full overflow-auto flex gap-2">
                             @foreach ($contentS['seasons'] as $temporadas)
                                 <div class="block" id="{{$temporadas['season_number']}}">
                                     <div class="flex gap-2">
                                         <div class="gap-4">
-                                            <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
-                                                <a href="{{route('series.showSeason', [$idserie, $temporadas['season_number']])}}">
+                                            @if (!empty($temporadas['poster_path']))
+                                                <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
+                                                    <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}">
                                                     <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
                                                         <div class="absolute bg-red-500 px-4 py-1 top-0 left-0 mt-2 rounded-r-full">
                                                             <h6>{{$temporadas['season_number']}}</h6>
@@ -83,9 +84,10 @@
                                                         <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
                                                             <p class="truncate px-2">{{$temporadas['name']}}</p>
                                                         </div>
-                                                      </h6>
-                                                </a>
-                                            </button>
+                                                    </h6>
+                                                    </a>
+                                                </button>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

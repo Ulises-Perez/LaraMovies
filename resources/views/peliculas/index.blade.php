@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <main id="main">
+    <main id="main" class="mt-20">
 
         <section>
             <div class="w-full py-10" id="scrollingPanel1">

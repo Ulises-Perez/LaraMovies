@@ -128,7 +128,7 @@
                                 echo '
                                         <div class="contentMovie">
                                             <div class="absolute inset-0 flex flex-col items-center">
-                                                <iframe class="w-full h-full rounded-t" src="'.$src.'" frameborder="0" 
+                                                <iframe class="w-full h-full rounded" src="'.$src.'" frameborder="0" 
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen></iframe>
                                             </div>
@@ -144,7 +144,7 @@
         <section id="episodes-content">
             <div class="w-full">
                 <div class="lg:container mx-auto px-2 xl:px-0 text-white">
-                    <div class="episodios py-8 h-auto overflow-auto">
+                    <div class="episodios descs py-8 h-auto overflow-auto">
                             @php
                                 $i=0;
                             @endphp
@@ -182,6 +182,24 @@
                                                 </div>
                                             @endif
                                         @endforeach
+                                        <!--@if ($contentS['seasons'] >= count($contentS['seasons']))
+                                            <div class="gap-4">
+                                                <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 h-24 relative">
+                                                    <a href="{{route('series.showSeason', [$idserie, $idseason+1])}}">
+                                                        <h6 class="text-white bg-red-500 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
+                                                            <div class="absolute px-4 py-2 inset-0 h-full flex items-center justify-center content-center">
+                                                                <h6><i class="fas fa-arrow-right text-2xl"></i></h6>
+                                                            </div>
+                                                            <div class="absolute w-full bg-black bg-opacity-0 py-1 bottom-0 rounded-b">
+                                                                <p>
+                                                                    Temporada {{$idseason+1}}
+                                                                </p>
+                                                            </div>
+                                                        </h6>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        @endif-->
                                     </div>
                                 </div>
                                 @endif

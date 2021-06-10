@@ -8,7 +8,7 @@
         </div>
         </div>
         <div class="flex flex-wrap relative">
-        <div class="w-full absolute z-10">
+        <div class="menu w-full fixed z-10">
             <nav class="relative flex flex-wrap items-center justify-between px-2 navbar-expand-lg">
             <div class="container mx-auto flex flex-wrap items-center justify-between">
                 <div
@@ -52,7 +52,7 @@
                     </a>
                     <a class="px-3 py-2 flex items-center text-sm leading-snug bg-white bg-opacity-0 hover:bg-opacity-25"
                     href="{{route('listas.index')}}">
-                    Listas
+                    Sagas
                     </a>
                 </div>
                 </div>
@@ -92,7 +92,7 @@
                     <li class="nav-item">
                         <a class="px-3 py-2 flex items-center text-xs uppercase leading-snug rounded bg-white bg-opacity-0 hover:bg-opacity-25"
                             href="{{route('listas.index')}}">
-                            Listas
+                            Sagas
                         </a>
                         </li>
                 </ul>
