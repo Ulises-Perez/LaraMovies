@@ -24,7 +24,7 @@
                             <div class="box-info-content col-span-3 lg:col-span-4 text-white">
                             <div class="info-title flex items-center justify-between">
                                 <h1 class="text-xl md:text-2xl lg:text-3xl font-semibold">
-                                T{{$idseason}}E{{$idepisode}} - {{$content_Info_Episode['name']}}
+                                    T{{$idseason}}E{{$idepisode}} - {{$content_Info_Episode['name']}}
                                 </h1>
                                 <div class="info-year-definicion text-base flex items-center gap-6">
                                 <div class="year hidden lg:block">
@@ -101,27 +101,44 @@
                           //new domDocument
                           $dom = new DomDocument("1.0");
       
-                          if($nombreCuevana = $contentS['original_name']){
-                            $nombreCuevana = $contentS['original_name'];
-                          }else{
-                            $nombreCuevana = $contentS['name'];
-                          }
+                          $nombreCuevana = $contentS['name'];
       
                           $nombreCuevanaArreglado = str_replace(" ","-", $nombreCuevana);
-      
-                          $nombreCuevanaFinal = str_replace("'", "", $nombreCuevanaArreglado);
+                          $nombreCuevanaArreglado2 = str_replace(".", "", $nombreCuevanaArreglado);
+                          $nombreCuevanaArreglado3 = str_replace("'", "", $nombreCuevanaArreglado2);
+                          $nombreCuevanaArreglado4 = str_replace("¿", "", $nombreCuevanaArreglado3);
+                          $nombreCuevanaArreglado5 = str_replace("?", "", $nombreCuevanaArreglado4);
+                          $nombreCuevanaArreglado6 = quitar_tildes($nombreCuevanaArreglado5);
+
+                          function quitar_tildes($cadena) {
+                            $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+                            $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+                            $texto = str_replace($no_permitidas, $permitidas ,$cadena);
+                            return $texto;
+                          }
+                          
+                          //print($nombreCuevanaArreglado6);
+                          //print('https://www.cinecalidad.mx/episodios/'.strtolower($nombreCuevanaArreglado6).'-temporada-'.$idseason.'-capitulo-'.$idepisode.'/');
       
                           //Scrape and parse
-                          $data = scrape('https://cuevana3.io/episodio/'.strtolower($nombreCuevanaFinal).'-'.$idseason.'x'.$idepisode.''); //scrape the website
+                          $data = scrape('https://serieskao.tv/episodios/'.strtolower($nombreCuevanaArreglado6).'-'.$idseason.'x'.$idepisode.'/'); //scrape the website
+
+                          $nameMovieI = 'https://serieskao.tv/episodios/'.strtolower($nombreCuevanaArreglado6).'-'.$idseason.'x'.$idepisode.'/';
+
+                          //dd($nameMovieI);
+
+                          https://serieskao.tv/episodios/la-casa-de-papel-1x1/
                           @$dom->loadHTML($data); //load the html data to the dom
       
-                          $XpathQuery = '//iframe'; //Your Xpath query could look something like this
+                          $XpathQuery = '//iframe[contains(@class, "metaframe")]'; //Your Xpath query could look something like this
                           $iframes = parse($data, $XpathQuery, $dom); //parse the HTML with Xpath
+
+                          //dd($iframes);
       
                           $i=0;
                           foreach($iframes as $iframe){
                               if($i++ >= 1) break;
-                              $src = $iframe->getAttribute('data-src'); //get the src attribute
+                              $src = $iframe->getAttribute('src'); //get the src attribute
                               if(empty($src)){
                                 echo '';
                               }else{
@@ -144,7 +161,7 @@
         <section id="episodes-content">
             <div class="w-full">
                 <div class="lg:container mx-auto px-2 xl:px-0 text-white">
-                    <div class="episodios descs py-8 h-auto overflow-auto">
+                    <div class="descs py-8 h-auto overflow-auto">
                             @php
                                 $i=0;
                             @endphp

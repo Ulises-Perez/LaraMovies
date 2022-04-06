@@ -1,6 +1,6 @@
 /* CSS Universal */
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Google Sans';
     scroll-behavior: smooth;
     letter-spacing: 0.05em;
     outline: none !important;
@@ -30,6 +30,10 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+#movie-name{
+    font-family: 'Poppins', sans-serif;
 }
 
 input[type="search"]::-webkit-search-cancel-button {
@@ -71,19 +75,32 @@ body{
     -webkit-backdrop-filter: blur(5px);
 }
 
+.backdrop-blur-black{
+    background-color: rgba(29, 29, 29, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
 .navbar-blur{
     /*background-color: rgba(29, 29, 29, .6);*/
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    background-image: linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+    background-image: linear-gradient(rgb(29, 29, 29) 0%, rgba(29, 29, 29, 0) 100%);
 }
 /* CSS Universal */
 
 
 /* CSS Sliders - Hero */
 .sliders{
-    background-position: center center; 
+    background-position: center -20px; 
     height: 600px;
+    -webkit-box-shadow: inset 0px -60px 30px 0px rgba(29,29,29,1);
+    -moz-box-shadow: inset 0px -60px 30px 0px rgba(29,29,29,1);
+    box-shadow: inset 0px -60px 30px 0px rgba(29,29,29,1);
+}
+
+.sombra-new-design{
+    -webkit-box-shadow: inset 0px -60px 30px 0px rgba(29,29,29,1);
+    -moz-box-shadow: inset 0px -60px 30px 0px rgba(29,29,29,1);
+    box-shadow: inset 0px -60px 30px 0px rgba(29,29,29,1);
 }
 
 .sombra{
@@ -95,6 +112,7 @@ body{
     bottom: 0;
     right: 0;
     left: 0;
+    display: none !important;
 }
 
 .owl-carousel-generos > .owl-dots {
@@ -107,32 +125,36 @@ body{
 .owl-dot {
     margin: 0px !important;
     outline: none !important;
+
+    transition-delay: 100ms ease;
+    transition: 100ms ease;
 }
 
 .owl-dot span {
     background-color: rgba(233, 233, 233, 0.5) !important;
-    width: 30px !important;
-    height: 5px !important;
+    width: 8px !important;
+    height: 8px !important;
 
     transition-delay: 100ms ease;
     transition: 100ms ease;
 }
 
 .owl-dot span:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgba(239, 68, 68, var(--tw-bg-opacity)) !important;
-    width: 30px !important;
-    height: 5px !important;
+    background-color: rgba(239, 68, 68, 1) !important;
+    width: 8px !important;
+    height: 8px !important;
 
     transition-delay: 100ms ease;
     transition: 100ms ease;
 }
 
 .owl-dot.active span {
-    --tw-bg-opacity: 1;
-    background-color: rgba(239, 68, 68, var(--tw-bg-opacity)) !important;
+    background-color: rgba(239, 68, 68, 1) !important;
     width: 30px !important;
-    height: 5px !important;
+    height: 8px !important;
+
+    transition-delay: 100ms ease;
+    transition: 100ms ease;
 }
 /* CSS Sliders - Hero */
 
@@ -170,20 +192,29 @@ body{
 .poster {
     height: 298px;
     margin-bottom: .5em;
-    box-shadow: 0 10px 17px rgba(0, 0, 0, 0.15);
 }
 
 .poster:hover .sombra-content{
     display: inline-flex;
 }
 
-.sombra-content{
-    display: none;
+/*.poster-trending:hover .sombra-content{
+    display: inline-flex;
+}*/
+
+.sombra-content-trending{
+    -webkit-box-shadow: inset 0px -50px 30px 0px rgba(29,29,29,1);
+    -moz-box-shadow: inset 0px -50px 30px 0px rgba(29,29,29,1);
+    box-shadow: inset 0px -50px 30px 0px rgba(29,29,29,1);
 }
 
 .play-btn{
     animation: pulse 1.5s infinite;
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+  }
 
 .toggle__dot{
     top: -.25rem;
@@ -194,6 +225,13 @@ body{
 input:checked ~ .toggle__dot{
     transform: translateX(100%);
     background-color: #EE5E53;
+}
+
+.box-list-box{
+    background-image: url("https://www.themoviedb.org/t/p/original/VlHt27nCqOuTnuX6bku8QZapzO.jpg");
+    background-position:center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 @keyframes pulse{

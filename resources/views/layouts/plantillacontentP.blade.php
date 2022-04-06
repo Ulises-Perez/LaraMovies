@@ -16,6 +16,10 @@
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Google+Sans:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
   
     <!-- Owl Carrousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -29,13 +33,35 @@
     @laravelPWA
   </head>
 
-<body id="body" style="background-image: url(https://image.tmdb.org/t/p/w185<?=$contentM['backdrop_path']?>);">
+<body id="body" class="relative" style="background-image: url(https://image.tmdb.org/t/p/w1280<?=$contentM['backdrop_path']?>);">
 
     @include('layouts.plantillaHeaderPS')
 
     @yield('content')
 
-    <footer class="border-t border-gray-600 border-opacity-25 bg-back-oficial">
+    <div class="menu-phone fixed bottom-0 w-full block md:hidden">
+        <div class="box">
+            <ul class="bg-back-oficial border-t border-gray-500 border-opacity-25 w-full rounded-t-xl flex justify-between py-2 px-3 gap-4">
+                <li>
+                  <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('welcome')}}"><i class="fas fa-home"></i></a>
+                </li>
+                <li>
+                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('peliculas.index', $page=1)}}"><i class="fas fa-film"></i></a>
+                </li>
+                <li>
+                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('series.index', $page=1)}}"><i class="fas fa-theater-masks"></i></a>
+                </li>
+                <li>
+                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('listas.index')}}"><i class="fas fa-list-ol"></i></a>
+                </li>
+                <li>
+                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('listas.index')}}"><i class="fas fa-heart"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="hidden md:block border-t border-gray-600 border-opacity-25 bg-back-oficial">
         <div class="w-full">
             <div class="container mx-auto py-10 px-4">
                 <div class="grid grid-cols-3 lg:grid-cols-10 gap-10">

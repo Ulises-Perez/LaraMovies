@@ -28,7 +28,7 @@
     @laravelPWA
   </head>
 
-<body id="body" style="background-image: url(https://image.tmdb.org/t/p/w185<?=$contentS['backdrop_path']?>);">
+<body id="body" style="background-image: url(https://image.tmdb.org/t/p/w1280<?=$contentS['backdrop_path']?>);">
 
     @include('layouts.plantillaHeaderPS')
 

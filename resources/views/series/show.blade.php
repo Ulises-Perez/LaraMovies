@@ -7,25 +7,14 @@
 
     <section id="content-back">
       <div class="w-full">
-        <div class="lg:container mx-auto pt-20 lg:pt-32 pb-6 lg:pb-16 px-2 xl:px-0">
+        <div class="lg:container mx-auto pt-20 lg:pt-28 pb-6 lg:pb-10 px-2 xl:px-0">
           <div class="grid grid-cols-1 md:grid-cols-5 gap-y-4 md:gap-4">
-            <div class="box-img-content relative col-span-2 lg:col-span-1 flex justify-center lg:justify-start">
-              <img src="https://image.tmdb.org/t/p/w342<?=$contentS['poster_path']?>"
-                class="w-auto rounded" alt="" />
-                <div class="hidden lg:block absolute top-0 left-0 m-2 flex items-center justify-center">
-                  <a href="https://www.themoviedb.org/tv/<?=$contentS['id']?>" target="_blank">
-                    <button class="bg-red-500 text-white px-3 py-2 rounded outline-none focus:outline-none">
-                      <i class="fas fa-external-link-alt"></i>
-                    </button>
-                  </a>
-                </div>
-            </div>
             <div class="box-info-content col-span-3 lg:col-span-4 text-white">
-              <div class="info-title flex items-center justify-between">
-                <h1 class="text-xl md:text-2xl lg:text-3xl font-semibold">
-                  <?=$contentS['name']?>
+              <div class="info-title flex items-center justify-center lg:justify-between">
+                <h1 class="text-3xl lg:text-5xl font-bold uppercase" id="movie-name">
+                  {{$contentS['name']}}
                 </h1>
-                <div class="info-year-definicion text-base flex items-center gap-6">
+                <!--<div class="info-year-definicion text-base flex items-center gap-6">
                   <div class="year hidden lg:block">
                     <?php
                       // Como la fecha viene en formato ingles, establecemos el localismo.
@@ -46,35 +35,60 @@
                   <div class="definicion bg-red-500 px-2 rounded-full">
                     HD
                   </div>
-                  -->
-                </div>
+                </div>-->
               </div>
-              <p class="descs text-base md:text-lg text-justify text-gray-500 my-4 overflow-auto h-20 leading-none">
-                  <?php
-                    if(!empty($contentS['overview'])){
-                      echo substr_replace($contentS['overview'], "...", 350);
-                    }else{
-                      echo '¡Lo sentimos, no hay ninguna descripción disponible!';
-                    }
-                  ?>
-              </p>
-              <div class="generosContent my-4 hidden md:block">
+              @if (empty($contentS['overview']))
+              @else
+                <p class="descm text-base md:text-md text-justify text-gray-400 my-4 overflow-auto lg:overflow-hidden h-20 lg:h-auto leading-none">
+                  {{$contentS['overview']}}
+                </p>
+              @endif
+              <div class="hidden md:grid grid-cols-4 gap-4 pt-1 pb-4 text-sm lg:text-base">
+                @php
+                  $i=0;
+                @endphp
+                @foreach ($contentCastS['crew'] as $pcrew)
+                    @if ($i++ <= 7)
+                      <div class="col-span-2 md:col-span-1 text-white">
+                        {{$pcrew['name']}}
+                        <p class="text-sm text-gray-400">
+                          {{$pcrew['job']}}
+                        </p>
+                      </div>
+                    @endif
+                @endforeach
+              </div>
+              <div class="generosContent pt-2 pb-6">
                 <h6 class="text-lg">Generos</h6>
-                <div class="grid grid-cols-4 lg:grid-cols-6 gap-2">
-                  <?php
-                    foreach($contentS['genres'] as $generos){
-                      echo '<a href="#'.$generos['name'].'">
-                              <div class="col-span-2 genero h-12 relative flex justify-start px-4 items-center rounded" style="
-                                    background-image: url(https://image.tmdb.org/t/p/w185/'.$contentS['backdrop_path'].');
-                                  ">
-                                <div class="nombre-genero absolute inset-0 bg-gradient-to-r from-red-600 px-6 rounded"></div>
-                                <h6 class="opacity-100 absolute">'.$generos['name'].'</h6>
-                              </div>
-                            </a>';
-                    }
-                  ?>
+                <div class="descs flex gap-2 overflow-auto">
+                  @foreach ($contentS['genres'] as $generos)
+                    <a href="#{{$generos['name']}}">
+                      <div class="genero w-40 h-12 relative flex justify-start px-4 items-center rounded-xl" style="
+                            background-image: url(https://image.tmdb.org/t/p/w185/{{$contentS['backdrop_path']}});
+                          ">
+                        <div class="nombre-genero absolute inset-0 bg-gradient-to-r from-red-600 px-4 rounded-xl"></div>
+                        <h6 class="opacity-100 absolute">{{$generos['name']}}</h6>
+                      </div>
+                    </a>
+                  @endforeach
                 </div>
               </div>
+              <!--<div class="flex flex-wrap">
+                <div class="w-full sm:w-6/12 md:w-4/12">
+                  <div class="relative inline-flex align-middle w-full">
+                    <button class="text-white font-bold uppercase text-sm px-6 py-3 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mb-1 bg-red-500 ease-linear transition-all duration-150" type="button" onclick="openDropdown(event,'dropdown-id')">
+                      Temporadas
+                    </button>
+                    <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg my-1" style="min-width:12rem" id="dropdown-id">
+                      @foreach ($contentS['seasons'] as $temporadas)
+                        <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">
+                          {{$temporadas['name']}}
+                        </a>
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -84,21 +98,21 @@
     <section id="temporadas-content-series">
         <div class="w-full">
             <div class="lg:container mx-auto px-2 xl:px-0 text-white">
-                <h1 class="text-xl">Temporadas</h1>
+
                 <div class="temporadas descs pt-2 pb-8 h-auto w-full overflow-auto flex gap-2">
                     @foreach ($contentS['seasons'] as $temporadas)
                         <div class="block" id="{{$temporadas['season_number']}}">
                             <div class="flex gap-2">
                                     <div class="gap-4">
                                         @if (!empty($temporadas['poster_path']))
-                                          <button class="font-bold uppercase shadow-lg rounded leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
+                                          <button class="font-bold uppercase shadow-lg rounded-xl leading-normal text-white shadow-inner text-white w-48 lg:w-60 h-20 relative" style="background-image: url(https://image.tmdb.org/t/p/w342{{$temporadas['poster_path']}}); background-size:cover; background-repeat:no-repeat;">
                                             <a href="{{route('series.showSeason', [$contentS['id'], $temporadas['season_number']])}}">
-                                              <h6 class="text-white bg-black bg-opacity-60 rounded py-6 px-4 text-xs h-full flex justify-center items-center content-center">
-                                                <div class="absolute bg-red-500 px-4 py-1 top-0 left-0 mt-2 rounded-r-full">
-                                                    <h6>{{$temporadas['season_number']}}</h6>
+                                              <h6 class="text-white bg-black bg-opacity-60 rounded-xl py-6 px-4 text-xs h-full flex justify-center items-center content-center">
+                                                <div class="absolute w-full sombra-content-trending flex justify-center items-end py-1 inset-0 rounded-xl">
+                                                    <p class="truncate pb-2">{{$temporadas['name']}}</p>
                                                 </div>
-                                                <div class="absolute w-full bg-black bg-opacity-50 py-1 bottom-0 rounded-b">
-                                                    <p class="truncate px-2">{{$temporadas['name']}}</p>
+                                                <div class="absolute top-0 left-0 bg-red-500 px-2 py-1 ml-1 mt-1 md:ml-2 md:mt-2 rounded-xl flex items-center justify-center">
+                                                  <h6>{{$temporadas['season_number']}}</h6>
                                                 </div>
                                               </h6>
                                             </a>
@@ -113,7 +127,53 @@
         </div>
     </section>
 
-    <section id="section-reparto">
+    <section class="descubrir bg-back-oficial border-t border-gray-600 border-opacity-25">
+      <div class="w-full lg:container mx-auto py-2 px-2 xl:px-0 text-white">
+        <div class="grid grid-cols-1 gap-6">
+
+          <section id="section-similares">
+
+            <section>
+              <div class="w-full">
+                  <div class="container mx-auto px-4 md:px-0 text-white mb-6 pt-3">
+                      
+                      <p class="flex-auto">
+                        <a class="text-lg font-bold uppercase py-2 block leading-normal text-white">
+                          Te recomendamos
+                        </a>
+                      </p>
+                  </div>
+                  <div class="container mx-auto flex justify-center content-center px-4 sm:px-0 mb-14 md:mb-14 lg:mb-6">
+                      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 justify-center content-center text-white">
+                          @php
+                              $i=1;
+                          @endphp
+                          @foreach ($recomendationsContent as $recomendacion)
+                              @if ($i++ <= 12)
+                                  <a href="{{route('series.show', $recomendacion['id'])}}" class="item tilt-poster transform hover:scale-105 transition duration-300 ease-in-out">
+                                      <div class="poster relative">
+                                          <img class="w-full h-full rounded-xl" src="https://image.tmdb.org/t/p/w300/{{$recomendacion['poster_path']}}" alt="{{$recomendacion['name']}}">
+                                          <div class="sombra-content hidden absolute inset-0 flex justify-center items-center rounded">
+                                              <button class="play-btn bg-red-500 text-white rounded-full h-10 w-10 lg:h-16 lg:w-16 outline-none focus:outline-none">
+                                                  <i class="fas fa-play"></i>
+                                              </button>
+                                          </div>
+                                      </div>
+                                      <p class="truncate w-full text-center">{{$recomendacion['name']}}</p>
+                                  </a>
+                              @endif
+                          @endforeach
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!--<section id="section-reparto">
       <div class="w-full">
         <div class="lg:container mx-auto px-2 xl:px-0">
           <div class="flex flex-wrap" id="tabs-id">
@@ -207,7 +267,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
   </main>
 @endsection

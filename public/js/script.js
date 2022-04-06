@@ -22,9 +22,15 @@ var num = 1; //number of pixels before modifying styles
 
 $(window).bind('scroll', function () {
     if ($(window).scrollTop() > num) {
-        $('.menu').addClass('navbar-blur');
+        $('.menu').addClass('bg-back-oficial');
+        $('.menu').addClass('border-b');
+        $('.menu').addClass('border-gray-500');
+        $('.menu').addClass('border-opacity-25');
     } else {
-        $('.menu').removeClass('navbar-blur');
+        $('.menu').removeClass('bg-back-oficial');
+        $('.menu').removeClass('border-b');
+        $('.menu').removeClass('border-gray-500');
+        $('.menu').removeClass('border-opacity-25');
     }
 });
 
@@ -57,6 +63,16 @@ function toggleModal(modalID) {
   document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
   document.getElementById(modalID).classList.toggle("flex");
   document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+  $("#modal-id iframe").attr("src", $("#modal-id iframe").attr("src"));
+}
+
+function cerrarModalVideo(modalID){
+  document.getElementById(modalID).classList.toggle("hidden");
+  document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+  document.getElementById(modalID).classList.toggle("flex");
+  document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+  $("#modal-id iframe").attr("src", $("#modal-id iframe").attr("src"));
+  //location.reload();
 }
 
 function openPopover(event, popoverID) {
@@ -85,6 +101,29 @@ if(campo === ''){
 /* JS NAVBAR */
 
 /* JS SLIDERS - HERO */
+$(".owl-carousel-top").owlCarousel({
+  loop: true,
+  margin: 10,
+  animateOut: "fadeOut",
+  autoplay: true,
+  autoplayTimeout: 5000,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 2,
+    },
+    600: {
+      items: 3,
+    },
+    700: {
+      items: 4,
+    },
+    1000: {
+      items: 6,
+    },
+  },
+});
+
 $(".owl-carousel-1").owlCarousel({
   loop: true,
   margin: 10,
