@@ -38,7 +38,7 @@
     <main id="main">
 
         <section>
-            <div class="w-full mt-10 mb-20">
+            <div class="w-full mt-10 mb-20 flex justify-center items-center">
                 <div class="container mx-auto text-white mb-4">
                     <p class="text-3xl uppercase">
                         <b>TOP 6</b> de Hoy
