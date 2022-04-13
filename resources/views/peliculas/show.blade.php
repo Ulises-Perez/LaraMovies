@@ -40,11 +40,11 @@
                       </script>
                       <!-- SCRIPT CAMBIA SRC DE LAS PELICULAS -->
 
-                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://vidsrc.me/embed/{{$contentM['imdb_id']}}/">Opción VS1</button>
+                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://vidsrc.me/embed/{{$contentM['imdb_id']}}/">Opción - VS1</button>
 
-                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://www.2embed.ru/embed/imdb/movie?id={{$contentM['imdb_id']}}">Opción 2EMRU</button>
+                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://www.2embed.ru/embed/imdb/movie?id={{$contentM['imdb_id']}}">Opción - 2EMRU</button>
 
-                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://Trailers.to/player/embed/imdb/{{$contentM['imdb_id']}}">Opción TTO</button>
+                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://Trailers.to/player/embed/imdb/{{$contentM['imdb_id']}}">Opción - TTO</button>
                     
 
                     <div class="contentMovie ">
