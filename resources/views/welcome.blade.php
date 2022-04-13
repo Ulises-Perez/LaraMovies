@@ -39,7 +39,7 @@
 
         <section>
             <div class="w-full mt-10 mb-20">
-                <div class="container mx-auto px-4 xl:px-0 text-white mb-4">
+                <div class="container mx-auto text-white mb-4">
                     <p class="text-3xl uppercase">
                         <b>TOP 6</b> de Hoy
                     </p>
@@ -109,7 +109,7 @@
 
         <section>
             <div class="w-full my-20">
-                <div class="container mx-auto px-4 md:px-0 text-white mb-4 flex items-center gap-6">
+                <div class="container mx-auto text-white mb-4 flex items-center gap-6">
                     <p class="text-3xl">
                         Populares
                     </p>
@@ -140,7 +140,7 @@
         </section>
 
         <section class="w-full my-20">
-            <div class="container mx-auto px-4 xl:px-0 text-white">
+            <div class="container mx-auto text-white">
                 <div class="box-list-box rounded-xl shadow-lg shadow-gray-100/25">
                     <div class="box-list-shadow bg-black bg-opacity-75 w-full h-full rounded-xl ">
                         <div class="box-list h-full w-full flex flex-col justify-center items-start px-10 py-20">
@@ -157,12 +157,12 @@
 
         <section>
             <div class="w-full my-20">
-                <div class="container mx-auto px-4 xl:px-0 text-white mb-4">
+                <div class="container mx-auto text-white mb-4">
                     <p class="text-3xl">
                         Series Populares
                     </p>
                 </div>
-                <div class="container mx-auto flex justify-center content-center px-4 xl:px-0 mb-6">
+                <div class="container mx-auto flex justify-center content-center mb-6">
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 justify-center content-center text-white">
                         @php
                             $i=0;
