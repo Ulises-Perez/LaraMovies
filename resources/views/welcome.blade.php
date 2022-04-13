@@ -38,13 +38,13 @@
     <main id="main">
 
         <section>
-            <div class="w-full mt-10 mb-20 flex justify-center items-center">
-                <div class="container mx-auto text-white mb-4">
+            <div class="w-full mt-10 mb-20">
+                <div class="container mx-auto text-white mb-4 flex justify-center items-center">
                     <p class="text-3xl uppercase">
                         <b>TOP 6</b> de Hoy
                     </p>
                 </div>
-                <div class="container mx-auto flex justify-center content-center px-4 xl:px-0 mb-6">
+                <div class="container mx-auto flex justify-center content-center mb-6">
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 justify-center content-center text-white">
                         @php
                             $i=0;
