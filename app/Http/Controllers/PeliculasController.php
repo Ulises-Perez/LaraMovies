@@ -22,7 +22,7 @@ class PeliculasController extends Controller
         $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
 
         //Api for Content of Movies
-        $contentM = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'?api_key='.$TMDB_KEY.'&language=es-MX');
+        $contentM = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'?api_key='.$TMDB_KEY.'&language=es-ES');
         $contentM = json_decode($contentM, true);
         $contentCast = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'/credits?api_key='.$TMDB_KEY.'&language=es-ES');
         $contentCast = json_decode($contentCast, true);
@@ -36,7 +36,7 @@ class PeliculasController extends Controller
         $recomendationsContent = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'/recommendations?api_key='.$TMDB_KEY.'&language=es-MX&page=1');
         $recomendationsContent = json_decode($recomendationsContent, true)['results'];
 
-        //dd($link);
+        //dd($contentM);
         //dd($data);
 
         //dd($data['enlaces']);
