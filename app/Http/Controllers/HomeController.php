@@ -26,12 +26,18 @@ class HomeController extends Controller
         $trendingMovies = file_get_contents('https://api.themoviedb.org/3/trending/movie/day?api_key='.$TMDB_KEY.'&language=es-ES');
         $trendingMovies = json_decode($trendingMovies, true);
 
-        //dd($npContent[0]);
+        $upcomingMovies = file_get_contents('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1');
+        $upcomingMovies = json_decode($upcomingMovies, true)['results'];
 
         //Api for Home Series
         $seContent = file_get_contents('https://api.themoviedb.org/3/tv/popular?api_key='.$TMDB_KEY.'&language=es-ES');
         $seContent = json_decode($seContent, true)['results'];
 
-        return view("welcome", compact('mvContent', 'npContent', 'generosContent', 'trendingMovies', 'seContent'));
+        $seTopRated = file_get_contents('https://api.themoviedb.org/3/tv/top_rated?api_key='.$TMDB_KEY.'&language=es-ES');
+        $seTopRated = json_decode($seTopRated, true)['results'];
+
+        //dd($upcomingMovies);
+
+        return view("welcome", compact('mvContent', 'npContent', 'generosContent', 'trendingMovies', 'upcomingMovies', 'seContent', 'seTopRated'));
     }
 }

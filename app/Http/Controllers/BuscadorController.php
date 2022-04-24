@@ -32,8 +32,11 @@ class BuscadorController extends Controller
         }else{
             $bSContent = json_decode($bSContent, true)['results'];
         }
+
+        $generosContent = file_get_contents('https://api.themoviedb.org/3/genre/movie/list?api_key='.$TMDB_KEY.'&language=es-ES');
+        $generosContent = json_decode($generosContent, true);
     
         // Return the search view with the resluts compacted
-        return view('buscador.buscador', compact('search', 'bContent', 'bSContent'));
+        return view('buscador.buscador', compact('search', 'bContent', 'bSContent', 'generosContent'));
     }
 }

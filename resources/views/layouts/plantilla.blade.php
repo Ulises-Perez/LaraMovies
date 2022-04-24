@@ -16,6 +16,10 @@
         href="https://fonts.googleapis.com/css?family=Google+Sans:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+
     <!-- Owl Carrousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
@@ -29,22 +33,18 @@
 <body class="relative">
 
     <header>
-        <div class="w-full">
-            <div class="mx-auto">
-                <form action="{{route('buscador.search')}}" method="GET">
-                    <div class="flex flex-wrap items-stretch h-16 hidden z-40" id="searchMobile">
-                        <input type="search" id="search" name="search" placeholder="Buscar Peliculas, Series o Animes"
-                            class="px-3 py-3 placeholder-white text-white bg-transparent rounded text-sm shadow outline-none focus:outline-none w-full h-full pr-10" />
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="flex flex-wrap relative">
             <div class="menu w-full fixed z-10 transition duration-700 ease-in-out">
-                <nav class="relative flex flex-wrap items-center justify-between px-2 navbar-expand-lg">
+                <!-- Barra de Busqueda - Solo Movil -->
+                <form action="{{route('buscador.search')}}" method="GET">
+                    <div class="fixed flex items-center z-10 bg-back-oficial w-full px-4 hidden" id="searchMobile">
+                        <input type="search" id="search" name="search" placeholder="Buscar Peliculas, Series..."
+                            class="py-7 w-full bg-transparent placeholder-white text-white rounded text-sm outline-none focus:outline-none" />
+                    </div>
+                </form>
+                <nav class="relative flex flex-wrap items-center justify-between px-4 navbar-expand-lg">
                     <div class="container mx-auto flex flex-wrap items-center justify-between">
-                        <div
-                            class="w-full relative flex justify-between items-center lg:w-auto lg:static lg:block lg:justify-between">
+                        <div class="w-full relative flex justify-between items-center lg:w-auto lg:static lg:block lg:justify-between">
                             <div class="flex items-center pt-3 pb-2">
                                 <a class="text-xl font-bold leading-relaxed inline-block py-2 whitespace-no-wrap"
                                     href="#">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="flex">
                                 <button
-                                    class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent text-white rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+                                    class="cursor-pointer text-xl leading-none py-1 border border-solid border-transparent text-white rounded bg-transparent block lg:hidden outline-none focus:outline-none z-20"
                                     type="button" onclick="toggleSearchMobile('searchMobile')">
                                     <i id="btn-lupa" class="fas fa-search"></i>
                                 </button>
@@ -67,7 +67,7 @@
                                         <input type="search" id="query" name="search" placeholder="Buscar Peliculas, Series o Animes"
                                             class="relative w-full bg-transparent px-3 py-3 pr-10 placeholder-white placeholder-opacity-50 text-white text-sm rounded-md shadow outline-none focus:outline-none border border-white border-opacity-50" />
                                         <span
-                                            class="z-10 h-full leading-snug font-normal absolute text-center text-white absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
+                                            class="h-full leading-snug font-normal absolute text-center text-white absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
                                             <a href="#" class="text-center">
                                                 <i class="fas fa-search"></i>
                                             </a>
@@ -127,7 +127,7 @@
                                 <div class="flex space-x-2">
                                     <div class="relative w-10 h-10">
                                       <img class="rounded-full w-10 h-10 shadow-sm" src="img/user.jpeg" alt="user image" />
-                                      <div class="absolute top-0 right-0 h-3 w-3 my-1 border-2 border-white rounded-full bg-green-400 z-2"></div>
+                                      <div class="absolute top-0 right-0 h-3 w-3 my-1 border-2 border-white rounded-full bg-green-400"></div>
                                 </div>
                             </div>
                         </div>
@@ -141,27 +141,27 @@
 
     <div class="menu-phone fixed bottom-0 w-full block md:hidden">
         <div class="box">
-            <ul class="bg-back-oficial border-t border-gray-500 border-opacity-25 w-full rounded-t-xl flex justify-between py-2 px-3 gap-4">
+            <ul class="bg-back-oficial border-t border-gray-500 border-opacity-25 w-full rounded-t-xl flex justify-between py-2 px-4 gap-4">
                 <li>
-                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('welcome')}}">
+                    <a class="text-center text-2xl block py-1 px-3 text-white rounded-xl bg-red-500" href="{{route('welcome')}}">
                         <i class="fas fa-home"></i>
                         <p class="text-xs">Inicio</p>
                     </a>
                 </li>
                 <li>
-                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('peliculas.index', $page=1)}}">
+                    <a class="text-center text-2xl block py-1 px-3 text-white" href="{{route('peliculas.index', $page=1)}}">
                         <i class="fas fa-film"></i>
                         <p class="text-xs">Películas</p>
                     </a>
                 </li>
                 <li>
-                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('series.index', $page=1)}}">
+                    <a class="text-center text-2xl block py-1 px-3 text-white" href="{{route('series.index', $page=1)}}">
                         <i class="fas fa-theater-masks"></i>
                         <p class="text-xs">Series</p>
                     </a>
                 </li>
                 <li>
-                    <a class="text-center text-2xl block py-1 px-3 text-white hover:text-red-500" href="{{route('listas.index')}}">
+                    <a class="text-center text-2xl block py-1 px-3 text-white" href="{{route('listas.index')}}">
                         <i class="fas fa-list-ol"></i>
                         <p class="text-xs">Listas</p>
                     </a>
@@ -172,7 +172,7 @@
 
     <footer class="hidden md:block border-t border-gray-600 border-opacity-25">
         <div class="w-full">
-            <div class="container mx-auto my-10 px-4">
+            <div class="container mx-auto my-10 px-4 xl:px-0">
                 <div class="grid grid-cols-3 lg:grid-cols-10 gap-10">
                     <div class="col-span-3 lg:col-span-4 logo-info">
                         <div class="imgFooter flex items-center justify-center lg:justify-start">

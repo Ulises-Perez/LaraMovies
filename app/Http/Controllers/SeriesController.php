@@ -14,7 +14,10 @@ class SeriesController extends Controller
         $spContent = Http::get('https://api.themoviedb.org/3/tv/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page.'')
             ->json()['results'];
 
-        return view('series.index', compact('page', 'spContent'));
+        $generosContent = file_get_contents('https://api.themoviedb.org/3/genre/movie/list?api_key='.$TMDB_KEY.'&language=es-ES');
+        $generosContent = json_decode($generosContent, true);
+
+        return view('series.index', compact('page', 'spContent', 'generosContent'));
     }
 
     public function show($idserie){
@@ -36,7 +39,12 @@ class SeriesController extends Controller
         $recomendationsContent = file_get_contents('https://api.themoviedb.org/3/tv/'.$idserie.'/recommendations?api_key='.$TMDB_KEY.'&language=es-MX&page=1');
         $recomendationsContent = json_decode($recomendationsContent, true)['results'];
 
-        return view('series.show', compact('idserie', 'contentS', 'contentCastS', 'contentImgS', 'generosContent', 'recomendationsContent'));
+        $upcomingMovies = file_get_contents('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1');
+        $upcomingMovies = json_decode($upcomingMovies, true)['results'];
+
+        //dd($contentImgS['logos']);
+
+        return view('series.show', compact('idserie', 'contentS', 'contentCastS', 'contentImgS', 'generosContent', 'recomendationsContent', 'upcomingMovies'));
     }
 
     public function showSeason($idserie, $idseason){
@@ -48,8 +56,14 @@ class SeriesController extends Controller
 
         $contentEpisodesS = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'?api_key='.$TMDB_KEY.'&language=es-ES')
             ->json();
+
+        $generosContent = Http::get('https://api.themoviedb.org/3/genre/movie/list?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
+
+        $upcomingMovies = file_get_contents('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1');
+        $upcomingMovies = json_decode($upcomingMovies, true)['results'];
         
-        return view('series.showSeason', compact('idserie', 'idseason', 'contentS', 'contentEpisodesS'));
+        return view('series.showSeason', compact('idserie', 'idseason', 'contentS', 'contentEpisodesS', 'generosContent', 'upcomingMovies'));
     }
 
     public function showEpisode($idserie, $idseason, $idepisode){
@@ -65,7 +79,15 @@ class SeriesController extends Controller
         $content_Info_Episode = Http::get('https://api.themoviedb.org/3/tv/'.$idserie.'/season/'.$idseason.'/episode/'.$idepisode.'?api_key='.$TMDB_KEY.'&language=es-ES')
             ->json();
 
+        $generosContent = Http::get('https://api.themoviedb.org/3/genre/movie/list?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json();
 
-        return view('series.showEpisode', compact('idserie', 'idseason', 'idepisode', 'contentS', 'contentEpisodesS', 'content_Info_Episode'));
+        $upcomingMovies = file_get_contents('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1');
+        $upcomingMovies = json_decode($upcomingMovies, true)['results'];
+
+        //dd($contentEpisodesS['episodes']);
+
+
+        return view('series.showEpisode', compact('idserie', 'idseason', 'idepisode', 'contentS', 'contentEpisodesS', 'content_Info_Episode', 'generosContent', 'upcomingMovies'));
     }
 }

@@ -12,9 +12,14 @@ class PeliculasController extends Controller
 
         //Api for Peliculas Page
         $mpContent = file_get_contents('https://api.themoviedb.org/3/movie/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page);
-        $mpContent = json_decode($mpContent, true)['results'];
+        $mpContent = json_decode($mpContent, true);
 
-        return view('peliculas.index', compact('page', 'mpContent'));
+        //dd($mpContent);
+
+        $generosContent = file_get_contents('https://api.themoviedb.org/3/genre/movie/list?api_key='.$TMDB_KEY.'&language=es-ES');
+        $generosContent = json_decode($generosContent, true);
+
+        return view('peliculas.index', compact('page', 'mpContent', 'generosContent'));
     }
 
     public function show($idpelicula){
@@ -35,12 +40,14 @@ class PeliculasController extends Controller
 
         $recomendationsContent = file_get_contents('https://api.themoviedb.org/3/movie/'.$idpelicula.'/recommendations?api_key='.$TMDB_KEY.'&language=es-MX&page=1');
         $recomendationsContent = json_decode($recomendationsContent, true)['results'];
+        $upcomingMovies = file_get_contents('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1');
+        $upcomingMovies = json_decode($upcomingMovies, true)['results'];
 
-        //dd($contentM);
+        //dd(count($recomendationsContent));
         //dd($data);
 
         //dd($data['enlaces']);
 
-        return view('peliculas.show', compact('idpelicula', 'contentM', 'contentCast', 'contentImg', 'contentTrailer', 'generosContent', 'recomendationsContent'));
+        return view('peliculas.show', compact('idpelicula', 'contentM', 'contentCast', 'contentImg', 'contentTrailer', 'generosContent', 'recomendationsContent', 'upcomingMovies'));
     }
 }

@@ -16,7 +16,7 @@
       </script>-->
 
       <section id="content-back">
-        <div class="w-full h-screen md:h-full sombra-new-design">
+        <div class="w-full h-full md:h-full sombra-new-design">
           <div class="lg:container mx-auto pt-20 lg:pt-24 px-2 xl:px-0">
             <div class="grid grid-cols-1 md:gap-2">
               <section id="video-content">
@@ -27,7 +27,7 @@
                     <script>
                       window.onload = function()
                       {
-                      var botones = document.getElementsByTagName("button"),
+                      var botones = document.getElementsByClassName("buttonLinks"),
                           iframe = document.getElementById("iframeplay"),
                           sizeBotones = botones.length;
 
@@ -40,23 +40,42 @@
                       </script>
                       <!-- SCRIPT CAMBIA SRC DE LAS PELICULAS -->
 
-                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://vidsrc.me/embed/{{$contentM['imdb_id']}}/">Opción VS1</button>
+                    <div class="optionsLinks flex overflow-auto">
+                      <button class="buttonLinks text-white font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 transition duration-300 ease-in-out rounded-xl hover:bg-red-500" data-link="https://vidsrc.me/embed/{{$contentM['imdb_id']}}/">Opción VS1</button>
 
-                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://www.2embed.ru/embed/imdb/movie?id={{$contentM['imdb_id']}}">Opción 2EMRU</button>
+                      <button class="buttonLinks text-white font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 transition duration-300 ease-in-out rounded-xl hover:bg-red-500" data-link="https://www.2embed.ru/embed/imdb/movie?id={{$contentM['imdb_id']}}">Opción 2EMRU</button>
 
-                    <button class="text-white bg-white bg-opacity-25 font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-xl" data-link="https://Trailers.to/player/embed/imdb/{{$contentM['imdb_id']}}">Opción TTO</button>
+                      <button class="buttonLinks text-white font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 transition duration-300 ease-in-out rounded-xl hover:bg-red-500" data-link="https://Trailers.to/player/embed/imdb/{{$contentM['imdb_id']}}">Opción TTO</button>
+
+                      <button id="MostrarVideoTorrent" class="hidden lg:block bg-red-500 border-red-500 text-white font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 rounded-xl" type="submit">Descargar Torrent</button>
+                    </div>
                     
 
-                    <div class="contentMovie ">
+                    <div class="contentMovie" id="contentMovie">
                       <iframe id="iframeplay" class="absolute inset-0 w-full h-full rounded-xl" src="https://www.2embed.ru/embed/imdb/movie?id={{$contentM['imdb_id']}}" frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                       </iframe>
                     </div>
+
+                    <!--
+
+                    <div id="VideoTorrentClass">
+                      <video id="iframeplay" class="rounded" controls src="magnet:?xt=urn:btih:DA3B70ACC355DEB539D56DF1ED0481AC92287B9F&dn=Turning.Red.2022.SPANiSH.1080p.DSNP.WEB-DL.x264-dem3nt3&tr=udp%3A%2F%2Fmovies.zsw.ca%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta-net.ru%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.0x.tf%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fcamera.lei001.com%3A6969%2Fannounce&tr=http%3A%2F%2Fvps02.net.orel.ru%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.nanoha.org%3A443%2Fannounce&tr=udp%3A%2F%2Ffe.dealclub.de%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A1337%2Fannounce&tr=https%3A%2F%2Ftr.torland.ga%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.files.fm%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce" data-title="Opción Torrent" width="100%" height="480px">
+                        <track srclang="en" label="Default" default src="https://raw.githubusercontent.com/andreyvit/subtitle-tools/master/sample.srt">
+                      </video>
+                      <div class="bg-red-500 text-white rounded-b flex justify-center items-center">
+                        <p class="px-2 py-1 text-sm ">Porfavor, pausar el video antes de elegir otra opción. Esta opción todavia esta en desarrollo, lamentamos las molestias.</p>
+                      </div>
+                    </div>
+
+                    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>-->
+
+
                   </div>
                 </div>
               </section>
-              <div class="box-info-content text-white pt-3">
+              <div class="box-info-content text-white pt-8">
                 <!-- TITULO Y AÑO -->
                 <div class="info-title flex items-center justify-center lg:justify-between">
                   <h1 class="text-3xl lg:text-5xl font-bold uppercase" id="movie-name">
@@ -83,7 +102,7 @@
                 <!-- DESCRIPCIÓN -->
                 @if (empty($contentM['overview']))
                 @else
-                  <p class="descm text-base md:text-md text-justify text-gray-400 my-3 overflow-auto lg:overflow-hidden h-20 lg:h-auto leading-none">
+                  <p class="descm text-base md:text-md text-justify text-gray-400 my-3 leading-none">
                     {{$contentM['overview']}}
                   </p>
                 @endif
@@ -131,8 +150,8 @@
         </div>
       </section>
 
-      <section class="descubrir bg-back-oficial">
-        <div class="w-full lg:container mx-auto px-2 pt-6 xl:px-0 text-white">
+      <section class="descubrir bg-back-oficial py-10">
+        <div class="w-full lg:container mx-auto text-white">
           <div class="grid grid-cols-1 gap-6">
 
             <section id="section-similares">
@@ -151,22 +170,21 @@
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 justify-center content-center text-white">
                             @php
                                 $i=1;
+                                $varC = count($recomendationsContent);
                             @endphp
-                            @foreach ($recomendationsContent as $recomendacion)
+                            @if (!$varC == 0)
+                              @foreach ($recomendationsContent as $movies)
                                 @if ($i++ <= 12)
-                                    <a href="{{route('peliculas.show', $recomendacion['id'])}}" class="item tilt-poster transform hover:scale-105 transition duration-300 ease-in-out">
-                                        <div class="poster relative">
-                                            <img class="w-full h-full rounded-xl" src="https://image.tmdb.org/t/p/w300/{{$recomendacion['poster_path']}}" alt="{{$recomendacion['title']}}">
-                                            <div class="sombra-content hidden absolute inset-0 flex justify-center items-center rounded">
-                                                <button class="play-btn bg-red-500 text-white rounded-full h-10 w-10 lg:h-16 lg:w-16 outline-none focus:outline-none">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <p class="truncate w-full text-center">{{$recomendacion['title']}}</p>
-                                    </a>
+                                  <x-movie-card :movies="$movies"/>
                                 @endif
-                            @endforeach
+                              @endforeach
+                            @else
+                              @foreach ($upcomingMovies as $movies)
+                                @if ($i++ <= 12)
+                                  <x-movie-card :movies="$movies"/>
+                                @endif
+                              @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
