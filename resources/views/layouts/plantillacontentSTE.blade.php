@@ -33,7 +33,7 @@
 
     <header>
         <div class="flex flex-wrap relative">
-            <div class="menu w-full fixed z-10 transition duration-700 ease-in-out">
+            <div class="menu w-full fixed z-50 transition duration-700 ease-in-out">
                 <!-- Barra de Busqueda - Solo Movil -->
                 <form action="{{route('buscador.search')}}" method="GET">
                     <div class="fixed flex items-center z-10 bg-back-oficial w-full px-4 hidden" id="searchMobile">

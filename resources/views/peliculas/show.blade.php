@@ -47,7 +47,7 @@
 
                       <button class="buttonLinks text-white font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 transition duration-300 ease-in-out rounded-xl hover:bg-red-500" data-link="https://Trailers.to/player/embed/imdb/{{$contentM['imdb_id']}}">Opción TTO</button>
 
-                      <button id="MostrarVideoTorrent" class="hidden lg:block bg-red-500 border-red-500 text-white font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 rounded-xl" type="submit">Descargar Torrent</button>
+                  <!--<button id="MostrarVideoTorrent" class="hidden lg:block bg-red-500 border-red-500 text-white font-bold uppercase px-6 py-2 mb-2 text-sm outline-none focus:outline-none mr-1 mb-1 rounded-xl" type="submit">Descargar Torrent</button>-->
                     </div>
                     
 

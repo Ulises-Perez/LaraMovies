@@ -43,7 +43,7 @@
                                 @else
                                   <div class="EpisodioAnterior">
                                     <a href="{{route('series.showEpisode', [$idserie, $idseason, $idepisode-1])}}" class="bg-red-500 py-2 px-3 sm:px-6 rounded-xl flex items-center w-full">
-                                      <i class="fas fa-arrow-left pr-1 sm:pr-2"></i> <b class="hidden sm:block pr-1">Episodio </b> Anterior
+                                      <i class="fas fa-arrow-left pr-1 sm:pr-2"></i> Anterior
                                     </a>
                                   </div>
                                 @endif
@@ -52,21 +52,51 @@
                                     <i class="fas fa-list-ol"></i>
                                   </a>
                                 </div>-->
-                                <div class="dropdown inline-block relative">
+                                <div class="flex flex-wrap">
+                                  <div class="w-full sm:w-6/12 md:w-4/12 px-2">
+                                    <div class="relative inline-flex align-middle w-full">
+                                      <button class="bg-white bg-opacity-25 rounded-xl text-xs uppercase text-white py-2 px-6 inline-flex items-start" type="button" onclick="openDropdown(event,'dropdown-id')">
+                                        Episodios
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                      </button>
+                                      <div class="hidden text-base z-40 float-left list-none text-left rounded-xl w-32 overflow-auto overflow-x-hidden h-60 mt-1" id="dropdown-id">
+                                        @foreach ($contentEpisodesS['episodes'] as $episodiosNew)
+                                          @if ($episodiosNew['episode_number'] == $content_Info_Episode['episode_number'])
+                                            <a href="{{route('series.showEpisode', [$idserie, $idseason, $episodiosNew['episode_number']])}}" class="text-sm py-2 px-2 font-normal block w-full whitespace-nowrap bg-red-400 hover:bg-red-500 text-white truncate w-full">
+                                              {{$episodiosNew['episode_number']}} - Viendo <i class="fas fa-eye"></i>
+                                            </a>
+                                          @else
+                                            <a href="{{route('series.showEpisode', [$idserie, $idseason, $episodiosNew['episode_number']])}}" class="text-sm py-2 px-2 font-normal block w-full whitespace-nowrap bg-white hover:bg-gray-200 text-gray-800 truncate w-full">
+                                              {{$episodiosNew['episode_number']}} - {{$episodiosNew['name']}}
+                                            </a>
+                                          @endif
+                                        @endforeach
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!--<div class="dropdown inline-block relative">
                                   <button class="bg-white bg-opacity-25 rounded-xl text-xs uppercase text-white py-2 px-6 inline-flex items-center">
                                     <span class="mr-1">Episodios</span>
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
                                   </button>
-                                      <ul class="dropdown-menu absolute hidden text-gray-800 overflow-auto rounded-xl z-50 h-60">
+                                      <ul class="dropdown-menu absolute hidden text-gray-800 overflow-auto rounded-xl z-50 h-60 w-32">
                                           @foreach ($contentEpisodesS['episodes'] as $episodiosNew)
                                             <li>
-                                              <a href="{{route('series.showEpisode', [$idserie, $idseason, $episodiosNew['episode_number']])}}" class="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">
-                                                  {{$episodiosNew['episode_number']}} - <b class="truncate">{{$episodiosNew['name']}}</b>
-                                              </a>
+                                              @if ($episodiosNew['episode_number'] == $content_Info_Episode['episode_number'])
+                                                <a href="{{route('series.showEpisode', [$idserie, $idseason, $episodiosNew['episode_number']])}}" class="bg-red-200 hover:bg-red-300 py-2 px-2 flex justify-start items-center w-full truncate">
+                                                  {{$episodiosNew['episode_number']}} <b class="pl-1">Estas Viendo <i class="fas fa-eye"></i> </b>
+                                                </a>
+                                              @else
+                                                <a href="{{route('series.showEpisode', [$idserie, $idseason, $episodiosNew['episode_number']])}}" class="bg-gray-200 hover:bg-gray-300 py-2 px-2 flex justify-start items-center w-full truncate">
+                                                  {{$episodiosNew['episode_number']}} <b class="pl-1">{{$episodiosNew['name']}}</b>
+                                                </a>
+                                              @endif
                                             </li>
                                           @endforeach
                                       </ul>
-                                </div>
+                                </div>-->
                                 @php
                                     $varTotalEpisodios = count($contentEpisodesS['episodes']);
                                 @endphp
@@ -74,7 +104,7 @@
                                 @else
                                   <div class="EpisodioProximo">
                                     <a href="{{route('series.showEpisode', [$idserie, $idseason, $idepisode+1])}}" class="bg-red-500 py-2  px-3 sm:px-6 rounded-xl flex items-center">
-                                      Proximo <b class="hidden sm:block pl-1">Episodio</b> <i class="fas fa-arrow-right pl-1 sm:pl-2"></i>
+                                      Proximo <i class="fas fa-arrow-right pl-1 sm:pl-2"></i>
                                     </a>
                                   </div>
                                 @endif
