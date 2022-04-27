@@ -37,7 +37,7 @@
             <div class="menu w-full fixed z-10 transition duration-700 ease-in-out">
                 <!-- Barra de Busqueda - Solo Movil -->
                 <form action="{{route('buscador.search')}}" method="GET">
-                    @csrf
+                    {{ csrf_field() }}
                     <div class="fixed flex items-center z-10 bg-back-oficial w-full px-4 hidden" id="searchMobile">
                         <input type="search" id="search" name="search" placeholder="Buscar Peliculas, Series..."
                             class="py-7 w-full bg-transparent placeholder-white text-white rounded text-sm outline-none focus:outline-none" />
