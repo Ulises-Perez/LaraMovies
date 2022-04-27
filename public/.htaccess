@@ -14,6 +14,11 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ [L]
+
     # If we receive a forwarded http request from a proxy...
     RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
 
