@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 class BuscadorController extends Controller
 {
     public function search(Request $request){
+
+        $request->validate([
+            'search' => ['required']
+        ]);
+
         // Get the search value from the request
         $search = $request->input('search');
 
