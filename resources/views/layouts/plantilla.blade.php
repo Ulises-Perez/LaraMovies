@@ -43,6 +43,15 @@
                             class="py-7 w-full bg-transparent placeholder-white text-white rounded text-sm outline-none focus:outline-none" />
                     </div>
                 </form>
+                @if ($errors->any())
+                    <div class="alert alert-danger bg-red-500">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <nav class="relative flex flex-wrap items-center justify-between px-4 navbar-expand-lg">
                     <div class="container mx-auto flex flex-wrap items-center justify-between">
                         <div class="w-full relative flex justify-between items-center lg:w-auto lg:static lg:block lg:justify-between">
