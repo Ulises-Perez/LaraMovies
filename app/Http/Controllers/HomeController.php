@@ -24,8 +24,8 @@ class HomeController extends Controller
         $trendingMovie = file_get_contents('https://api.themoviedb.org/3/collection/87118?api_key='.$TMDB_KEY.'&language=es-ES');
         $trendingMovie = json_decode($trendingMovie, true);
 
-        $trendingMovies = file_get_contents('https://api.themoviedb.org/3/trending/movie/day?api_key='.$TMDB_KEY.'&language=es-ES');
-        $trendingMovies = json_decode($trendingMovies, true);
+        $trendingMovies = Http::get('https://api.themoviedb.org/3/trending/movie/day?api_key='.$TMDB_KEY.'&language=es-ES')
+            ->json()['results'];
 
         $upcomingMovies = file_get_contents('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1');
         $upcomingMovies = json_decode($upcomingMovies, true)['results'];
