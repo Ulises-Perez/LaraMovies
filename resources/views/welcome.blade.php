@@ -48,10 +48,10 @@
                 <div class="container mx-auto flex justify-center content-center px-4 xl:px-0 mb-6">
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 justify-center content-center text-white">
                         @php
-                            $i=0;
+                            $i=1;
                         @endphp
                         @foreach ($trendingMovies as $movies)
-                            @if ($i++ <=11)
+                            @if ($i++ <=12)
 
                                 <x-movie-card :movies="$movies"/>
                                 
