@@ -10,7 +10,7 @@
             <div class="w-full py-10 lg:py-20">
                 <div class="container mx-auto flex justify-center content-center px-4 xl:px-0 mb-6">
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 justify-center content-center text-white">
-                        @foreach ($mpContent['results'] as $movies)
+                        @foreach ($mpContent as $movies)
                             @if (!empty($movies['poster_path']))
                                 <x-movie-card :movies="$movies"/>
                             @endif

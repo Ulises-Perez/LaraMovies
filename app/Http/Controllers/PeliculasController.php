@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PeliculasController extends Controller
 {
@@ -11,8 +12,8 @@ class PeliculasController extends Controller
         $TMDB_KEY = 'd1b0f4017f214c6a8fa7bcc9e89faa80';
 
         //Api for Peliculas Page
-        $mpContent = file_get_contents('https://api.themoviedb.org/3/movie/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page);
-        $mpContent = json_decode($mpContent, true);
+        $mpContent = Http::get('https://api.themoviedb.org/3/movie/popular?api_key='.$TMDB_KEY.'&language=es-ES&page='.$page)
+            ->json()['results'];
 
         //dd($mpContent);
 
