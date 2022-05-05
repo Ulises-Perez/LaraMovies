@@ -34,7 +34,7 @@
 
     <header>
         <div class="flex flex-wrap relative">
-            <div class="menu w-full fixed z-10 transition duration-700 ease-in-out">
+            <div class="w-full fixed z-10 transition duration-700 ease-in-out">
                 <!-- Barra de Busqueda - Solo Movil -->
                 <form action="{{route('buscador.search')}}" method="GET">
                     {{ csrf_field() }}
@@ -43,17 +43,9 @@
                             class="py-7 w-full bg-transparent placeholder-white text-white rounded text-sm outline-none focus:outline-none" />
                     </div>
                 </form>
-                @if ($errors->any())
-                    <div class="alert alert-danger bg-red-500">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <nav class="relative flex flex-wrap items-center justify-between px-4 navbar-expand-lg">
+                <nav class="menu relative flex flex-wrap items-center justify-between px-4 navbar-expand-lg">
                     <div class="container mx-auto flex flex-wrap items-center justify-between">
+
                         <div class="w-full relative flex justify-between items-center lg:w-auto lg:static lg:block lg:justify-between">
                             <div class="flex items-center pt-3 pb-2">
                                 <a class="text-xl font-bold leading-relaxed inline-block py-2 whitespace-no-wrap"
@@ -69,6 +61,7 @@
                                 </button>
                             </div>
                         </div>
+
                         <div class="md:flex md:flex-grow items-center hidden" id="example-collapse-navbar">
                             <ul class="flex flex-col lg:items-center md:flex-row list-none md:mr-auto text-white">
                                 <form action="{{route('buscador.search')}}" method="GET">
@@ -141,8 +134,28 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </nav>
+
+                @if ($errors->any())
+                    <div class="container mx-auto">
+                        <div class="text-white px-6 py-4 mx-2 sm:mx-0 my-2 border-0 rounded relative bg-red-500">
+                            @foreach ($errors->all() as $error)
+                                <span class="text-xl inline-block align-middle">
+                                    <i class="fas fa-bell"></i>
+                                </span>
+                                <span class="inline-block align-middle mr-8">
+                                    <b class="capitalize">Porfavor!</b> ingresar una pelicula, serie o anime, en el buscador!
+                                </span>
+                                <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
+                                <span>×</span>
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+                
             </div>
         </div>
     </header>

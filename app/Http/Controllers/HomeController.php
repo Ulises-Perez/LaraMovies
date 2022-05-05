@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -36,8 +37,27 @@ class HomeController extends Controller
         $seTopRated = file_get_contents('https://api.themoviedb.org/3/tv/top_rated?api_key='.$TMDB_KEY.'&language=es-ES');
         $seTopRated = json_decode($seTopRated, true)['results'];
 
-        //dd($upcomingMovies);
+        $generoAccion = Http::get('https://api.themoviedb.org/3/discover/movie?api_key='.$TMDB_KEY.'&language=es-ES&page=1&with_genres=28')
+            ->json()['results'];
 
-        return view("welcome", compact('mvContent', 'npContent', 'generosContent', 'trendingMovies', 'upcomingMovies', 'seContent', 'seTopRated'));
+        //dd($generoAccion);
+
+        /* Image
+        $dir = 'https://image.tmdb.org/t/p/w300/';
+        $name = 'uoMyXY1ReK5I1kkMMQfqod7YhXh.jpg';
+        $newName = 'uoMyXY1ReK5I1kkMMQfqod7YhXh.webp';
+
+        // Create and save
+        $img = imagecreatefromjpeg($dir . $name);
+        imagepalettetotruecolor($img);
+        imagealphablending($img, true);
+        imagesavealpha($img, true);
+        imagewebp($img, $dir . $newName, 100);
+        imagedestroy($img);
+        */
+
+        //dd($img);
+
+        return view("welcome", compact('mvContent', 'npContent', 'generosContent', 'trendingMovies', 'upcomingMovies', 'seContent', 'seTopRated', 'generoAccion'));
     }
 }
