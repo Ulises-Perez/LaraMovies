@@ -21,14 +21,11 @@ class HomeController extends Controller
         $generosContent = file_get_contents('https://api.themoviedb.org/3/genre/movie/list?api_key='.$TMDB_KEY.'&language=es-ES');
         $generosContent = json_decode($generosContent, true);
 
-        $trendingMovie = file_get_contents('https://api.themoviedb.org/3/collection/87118?api_key='.$TMDB_KEY.'&language=es-ES');
-        $trendingMovie = json_decode($trendingMovie, true);
-
         $trendingMovies = Http::get('https://api.themoviedb.org/3/trending/movie/day?api_key='.$TMDB_KEY.'&language=es-ES')
             ->json()['results'];
 
-        $upcomingMovies = file_get_contents('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1');
-        $upcomingMovies = json_decode($upcomingMovies, true)['results'];
+        $upcomingMovies = Http::get('https://api.themoviedb.org/3/movie/upcoming?api_key='.$TMDB_KEY.'&language=es-ES&page=1')
+            ->json()['results'];
 
         //Api for Home Series
         $seContent = file_get_contents('https://api.themoviedb.org/3/tv/popular?api_key='.$TMDB_KEY.'&language=es-ES');
